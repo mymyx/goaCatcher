@@ -13,6 +13,7 @@
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
 		5D87FC4E6AF768059F4903E9 /* libPods-goalCatcherV1-goalCatcherV1Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 60D30E9702F6C174FF5823EE /* libPods-goalCatcherV1-goalCatcherV1Tests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
+		CCACB53A267A4E4E000E63FB /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = CCACB537267A4E4E000E63FB /* Fonts */; };
 		F1C0B67F93FF6A3A24D43059 /* libPods-goalCatcherV1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BC2FF107FEA66F14913EC74 /* libPods-goalCatcherV1.a */; };
 /* End PBXBuildFile section */
 
@@ -42,6 +43,7 @@
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = goalCatcherV1/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		89300BE9FB0CD1FDE2D3A89C /* Pods-goalCatcherV1-goalCatcherV1Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-goalCatcherV1-goalCatcherV1Tests.debug.xcconfig"; path = "Target Support Files/Pods-goalCatcherV1-goalCatcherV1Tests/Pods-goalCatcherV1-goalCatcherV1Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		8BC2FF107FEA66F14913EC74 /* libPods-goalCatcherV1.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-goalCatcherV1.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CCACB537267A4E4E000E63FB /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Fonts; path = "../node_modules/react-native-vector-icons/Fonts"; sourceTree = "<group>"; };
 		D57BEC11CF63BA671879F8C0 /* Pods-goalCatcherV1-goalCatcherV1Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-goalCatcherV1-goalCatcherV1Tests.release.xcconfig"; path = "Target Support Files/Pods-goalCatcherV1-goalCatcherV1Tests/Pods-goalCatcherV1-goalCatcherV1Tests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -86,6 +88,7 @@
 		13B07FAE1A68108700A75B9A /* goalCatcherV1 */ = {
 			isa = PBXGroup;
 			children = (
+				CCACB537267A4E4E000E63FB /* Fonts */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -122,6 +125,7 @@
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
 				B7C3C9E93BDB928115E87C87 /* Pods */,
+				CB2A1DE0A88F495198DA51B3 /* Resources */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -145,8 +149,14 @@
 				89300BE9FB0CD1FDE2D3A89C /* Pods-goalCatcherV1-goalCatcherV1Tests.debug.xcconfig */,
 				D57BEC11CF63BA671879F8C0 /* Pods-goalCatcherV1-goalCatcherV1Tests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		CB2A1DE0A88F495198DA51B3 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -243,6 +253,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CCACB53A267A4E4E000E63FB /* Fonts in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 			);
@@ -436,6 +447,7 @@
 					"DEBUG=1",
 					"$(inherited)",
 				);
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = goalCatcherV1Tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -460,6 +472,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = goalCatcherV1Tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -486,6 +499,7 @@
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_BITCODE = NO;
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = goalCatcherV1/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -511,6 +525,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
+				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = goalCatcherV1/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
