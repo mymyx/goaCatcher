@@ -86,14 +86,14 @@ class Index extends Component{
           <TextInput style={this.state.edit}
             underlineColorAndroid='transparent'
             placeholder='Password'
-            password={true}
+            secureTextEntry={true}
             clearButtonMode="while-editing"/>
 
           {/* 确认密码 */}
           <TextInput style={this.state.edit}
             underlineColorAndroid='transparent'
             placeholder='Confirm Password'
-            password={true}
+            secureTextEntry={true}
             clearButtonMode="while-editing"/>
           {/* 注册按钮 */}
         </View>
