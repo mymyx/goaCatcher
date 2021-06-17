@@ -1,6 +1,8 @@
 import React,{Component} from 'react';
 import {View,Text,StatusBar,TextInput,Dimensions,Stylesheet,TouchableOpacity,Image,ImageBackground, Button} from 'react-native';
 import {pxToDp} from "../../../utils/stylesKits";
+import Icon from 'react-native-vector-icons/FontAwesome';
+import { Input } from 'react-native-elements';
 
 // 类组件
 class Index extends Component{
@@ -24,10 +26,11 @@ class Index extends Component{
       white:'#fff',
       // 字体
       fonts:"ABeeZee-Regular",
+
       // 输入框样式
       edit:{
         // 输入栏边框
-        borderRadius:10,
+        // borderRadius:10,
         borderColor:'#BFBFBF',
         borderWidth:1,
         // 输入栏间距
@@ -42,13 +45,15 @@ class Index extends Component{
         // width: 40,
         // textAlign:"center",
         backgroundColor:'#fff',
-        transform:[{translateY:pxToDp(160)}]},
+        // transform:[{translateY:pxToDp(160)}]
+      },
+
       // Sign up样式
       signUpStyle:{
         opacity:1,
         color:"#FD6D04",
         fontSize:50,
-        textAlign:"center",transform:[{translateY:pxToDp(135)}]},
+        textAlign:"center"},
       // 按钮样式
       buttonStyle:{
         width:pxToDp(164),
@@ -66,37 +71,66 @@ class Index extends Component{
       {/* 背景 */}
       <ImageBackground source={require("../../../images/loginbackground.png")} 
       style={{width: '100%', height: '100%'}}>
+        <View style={{flex:1/6,transform:[{translateY:pxToDp(135)}]}}>
         <Text style={this.state.signUpStyle}>Sign up
-        </Text>
+          </Text>
+        </View>
+        
         {/* 输入框 */}
-        <View>
+        <View style={{flex:1/13,transform:[{translateY:pxToDp(100)}]}}>
+          <Input
+            placeholder='Username'
+            leftIcon={{ type: 'font-awesome', name: 'user',color:"#979797",size:pxToDp(16)}}
+          />
+        </View>
+        <View style={{flex:1/13,transform:[{translateY:pxToDp(100)}]}}>
+          <Input
+            placeholder='Email'
+            leftIcon={{ type: 'font-awesome', name: 'envelope' ,color:"#979797",size:pxToDp(16)}}
+          />
+        </View>
+        <View style={{flex:1/13,transform:[{translateY:pxToDp(100)}]}}>
+          <Input
+            secureTextEntry={true}
+            placeholder='Password'
+            leftIcon={{ type: 'font-awesome', name: 'lock',color:"#979797" ,size:pxToDp(16)}}
+          />
+        </View>
+        <View style={{flex:1/13,transform:[{translateY:pxToDp(100)}]}}>
+          <Input
+            secureTextEntry={true}
+            placeholder='Confirm password'
+            leftIcon={{ type: 'font-awesome', name: 'lock' ,color:"#979797",size:pxToDp(16)}}
+          />
+        </View>
+          
           {/* 用户名 */}
-          <TextInput style={this.state.edit}
+          {/* <TextInput style={this.state.edit}
             underlineColorAndroid='transparent'
             placeholder='Username'
-            clearButtonMode="while-editing"/>
+            clearButtonMode="while-editing"/> */}
 
           {/* 邮箱 */}
-          <TextInput style={this.state.edit}
+          {/* <TextInput style={this.state.edit}
             underlineColorAndroid='transparent'
             placeholder='Email'
-            clearButtonMode="while-editing"/>
+            clearButtonMode="while-editing"/> */}
 
           {/* 密码 */}
-          <TextInput style={this.state.edit}
+          {/* <TextInput style={this.state.edit}
             underlineColorAndroid='transparent'
             placeholder='Password'
             secureTextEntry={true}
-            clearButtonMode="while-editing"/>
+            clearButtonMode="while-editing"/> */}
 
           {/* 确认密码 */}
-          <TextInput style={this.state.edit}
+          {/* <TextInput style={this.state.edit}
             underlineColorAndroid='transparent'
             placeholder='Confirm Password'
             secureTextEntry={true}
-            clearButtonMode="while-editing"/>
+            clearButtonMode="while-editing"/> */}
           {/* 注册按钮 */}
-        </View>
+
       </ImageBackground>
     </View>
   }
