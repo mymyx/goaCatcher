@@ -14,6 +14,13 @@ class Index extends Component{
 
     // 类组件内部数据/状态
     this.state={
+      // 用户名
+      username:"",
+      // 邮箱
+      email:"",
+      // 密码
+      password:"",
+      verificatedPassword:"",
       // sign up字体大小
       topFontSize:50,
       // 输入框字体大小
@@ -27,40 +34,53 @@ class Index extends Component{
       // 字体
       fonts:"ABeeZee-Regular",
 
-      // 输入框样式
-      edit:{
-        // 输入栏边框
-        // borderRadius:10,
-        borderColor:'#BFBFBF',
-        borderWidth:1,
-        // 输入栏间距
-        marginTop:pxToDp(10),
-        marginLeft:pxToDp(45),
-        marginRight:pxToDp(45),
-        // 透明度
-        opacity:1,
-        color:"#979797",
-        fontSize:16,
-        height: pxToDp(40),
-        // width: 40,
-        // textAlign:"center",
-        backgroundColor:'#fff',
-        // transform:[{translateY:pxToDp(160)}]
-      },
+      // // 输入框样式
+      // edit:{
+      //   // 输入栏边框
+      //   // borderRadius:10,
+      //   borderColor:'#BFBFBF',
+      //   borderWidth:1,
+      //   // 输入栏间距
+      //   marginTop:pxToDp(10),
+      //   marginLeft:pxToDp(45),
+      //   marginRight:pxToDp(45),
+      //   // 透明度
+      //   opacity:1,
+      //   color:"#979797",
+      //   fontSize:16,
+      //   height: pxToDp(40),
+      //   // width: 40,
+      //   // textAlign:"center",
+      //   backgroundColor:'#fff',
+      //   // transform:[{translateY:pxToDp(160)}]
+      // },
 
       // Sign up样式
       signUpStyle:{
         opacity:1,
         color:"#FD6D04",
         fontSize:50,
-        textAlign:"center"},
-      // 按钮样式
-      buttonStyle:{
-        width:pxToDp(164),
-        fontSize:16,
-        textAlign:"center",transform:[{translateY:pxToDp(180)}]},
-      show:true
+        textAlign:"center"}
     }
+  }
+
+  usernameText=(username)=>{
+    this.setState({username});
+    console.log('username:',username);
+  }
+
+  emailText=(email)=>{
+    this.setState({email});
+    console.log('email:',email);
+  }
+
+  passwordText=(password)=>{
+    this.setState({password});
+    console.log('password:',password);
+  }
+  passwordVerificationText=(verificatedPassword)=>{
+    this.setState({verificatedPassword});
+    console.log('passwordVerification:',verificatedPassword);
   }
 
   render(){
@@ -80,18 +100,28 @@ class Index extends Component{
         <View style={{flex:1/13,transform:[{translateY:pxToDp(100)}]}}>
           <Input
             placeholder='Username'
+            // 最大长度11
+            maxLength={11}
+            value={this.state.username}
+            onChangeText={this.usernameText}
             leftIcon={{ type: 'font-awesome', name: 'user',color:"#979797",size:pxToDp(16)}}
           />
         </View>
         <View style={{flex:1/13,transform:[{translateY:pxToDp(100)}]}}>
           <Input
             placeholder='Email'
+            maxLength={64}
+            value={this.state.email}
+            onChangeText={this.emailText}
             leftIcon={{ type: 'font-awesome', name: 'envelope' ,color:"#979797",size:pxToDp(16)}}
           />
         </View>
         <View style={{flex:1/13,transform:[{translateY:pxToDp(100)}]}}>
           <Input
             secureTextEntry={true}
+            maxLength={256}
+            value={this.state.password}
+            onChangeText={this.passwordText}
             placeholder='Password'
             leftIcon={{ type: 'font-awesome', name: 'lock',color:"#979797" ,size:pxToDp(16)}}
           />
@@ -99,10 +129,14 @@ class Index extends Component{
         <View style={{flex:1/13,transform:[{translateY:pxToDp(100)}]}}>
           <Input
             secureTextEntry={true}
+            maxLength={256}
+            value={this.state.verificatedPassword}
+            onChangeText={this.passwordVerificationText}
             placeholder='Confirm password'
             leftIcon={{ type: 'font-awesome', name: 'lock' ,color:"#979797",size:pxToDp(16)}}
           />
         </View>
+
           
           {/* 用户名 */}
           {/* <TextInput style={this.state.edit}
