@@ -3,6 +3,7 @@ import {View,Text,StatusBar,TextInput,Dimensions,Stylesheet,TouchableOpacity,Ima
 import {pxToDp} from "../../../utils/stylesKits";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Input } from 'react-native-elements';
+import validator from "../../../utils/validator";
 
 // 类组件
 class Index extends Component{
@@ -20,7 +21,14 @@ class Index extends Component{
       email:"",
       // 密码
       password:"",
+
       verificatedPassword:"",
+      // 邮箱是否合法
+      emailValidate:true,
+      // 密码是否合法
+      passwordValidate:true,
+      // 两次密码是否一致
+      confirmPasswordValidate:true,
       // sign up字体大小
       topFontSize:50,
       // 输入框字体大小
@@ -63,7 +71,7 @@ class Index extends Component{
         textAlign:"center"}
     }
   }
-
+// 监听用户名文本变化
   usernameText=(username)=>{
     this.setState({username});
     console.log('username:',username);
@@ -78,10 +86,39 @@ class Index extends Component{
     this.setState({password});
     console.log('password:',password);
   }
+
   passwordVerificationText=(verificatedPassword)=>{
     this.setState({verificatedPassword});
     console.log('passwordVerification:',verificatedPassword);
   }
+// 点击完成时触发
+  emailSubmit=()=>{
+    const emailValidate=validator.validateEmail(this.state.email);
+    // if(!emailValidate){
+    //   this.setState({emailValidate});
+    //   return;
+    // }
+    this.setState({emailValidate});
+  }
+
+  // 点击完成时触发
+  passwordSubmit=()=>{
+    var passwordValidate=true;
+    if(this.state.password.length<8){
+      passwordValidate=false;
+    }
+    this.setState({passwordValidate});
+  }
+
+  // 点击完成时触发
+  confirmPasswordSubmit=()=>{
+    var confirmPasswordValidate=false;
+    if(this.state.verificatedPassword==this.state.password){
+      confirmPasswordValidate=true;
+    }
+    this.setState({confirmPasswordValidate});
+  }
+
 
   render(){
     console.log("2.render");
@@ -104,6 +141,7 @@ class Index extends Component{
             maxLength={11}
             value={this.state.username}
             onChangeText={this.usernameText}
+            // onSubmitEditing={this.usernameSubmit}
             leftIcon={{ type: 'font-awesome', name: 'user',color:"#979797",size:pxToDp(16)}}
           />
         </View>
@@ -113,6 +151,8 @@ class Index extends Component{
             maxLength={64}
             value={this.state.email}
             onChangeText={this.emailText}
+            onSubmitEditing={this.emailSubmit}
+            errorMessage={this.state.emailValidate?"":"please input a valid email"}
             leftIcon={{ type: 'font-awesome', name: 'envelope' ,color:"#979797",size:pxToDp(16)}}
           />
         </View>
@@ -122,7 +162,9 @@ class Index extends Component{
             maxLength={256}
             value={this.state.password}
             onChangeText={this.passwordText}
+            onSubmitEditing={this.passwordSubmit}
             placeholder='Password'
+            errorMessage={this.state.passwordValidate?"":"password must have at leat 8 characters"}
             leftIcon={{ type: 'font-awesome', name: 'lock',color:"#979797" ,size:pxToDp(16)}}
           />
         </View>
@@ -133,6 +175,8 @@ class Index extends Component{
             value={this.state.verificatedPassword}
             onChangeText={this.passwordVerificationText}
             placeholder='Confirm password'
+            onSubmitEditing={this.confirmPasswordSubmit}
+            errorMessage={this.state.confirmPasswordValidate?"":"Your confirmed password and new password do not match"}
             leftIcon={{ type: 'font-awesome', name: 'lock' ,color:"#979797",size:pxToDp(16)}}
           />
         </View>
