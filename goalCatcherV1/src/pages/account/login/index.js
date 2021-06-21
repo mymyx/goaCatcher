@@ -6,6 +6,7 @@ import { Input,Button } from 'react-native-elements';
 import validator from "../../../utils/validator";
 import request from "../../../utils/request";
 import {ACCOUNT_LOGIN} from "../../../utils/pathMap";
+
 // 类组件
 class Index extends Component{
 
