@@ -120,7 +120,7 @@ class Index extends Component{
   }
 
   signup=async()=>{
-    if(this.state.emailValidate==true){
+    if(this.state.emailValidate==true&&this.state.username.length!=0&&this.state.password.length>=8&&this.state.password==this.state.verificatedPassword){
       const res=await request.post(ACCOUNT_LOGIN,{phone:this.state.email});
       console.log(res);
     }
