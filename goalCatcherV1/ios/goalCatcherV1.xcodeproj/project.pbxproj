@@ -11,10 +11,9 @@
 		13B07FBC1A68108700A75B9A /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB01A68108700A75B9A /* AppDelegate.m */; };
 		13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 13B07FB51A68108700A75B9A /* Images.xcassets */; };
 		13B07FC11A68108700A75B9A /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 13B07FB71A68108700A75B9A /* main.m */; };
-		5D87FC4E6AF768059F4903E9 /* libPods-goalCatcherV1-goalCatcherV1Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 60D30E9702F6C174FF5823EE /* libPods-goalCatcherV1-goalCatcherV1Tests.a */; };
+		1B7FEFFBD4B718794234CAD4 /* libPods-goalCatcherV1-goalCatcherV1Tests.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 53082DBA6C8A28D8DEFB53AD /* libPods-goalCatcherV1-goalCatcherV1Tests.a */; };
 		81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */; };
-		CCACB53A267A4E4E000E63FB /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = CCACB537267A4E4E000E63FB /* Fonts */; };
-		F1C0B67F93FF6A3A24D43059 /* libPods-goalCatcherV1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8BC2FF107FEA66F14913EC74 /* libPods-goalCatcherV1.a */; };
+		DC418D5EDF083026EDDD53D4 /* libPods-goalCatcherV1.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7B23B96770BBC9DE333AB194 /* libPods-goalCatcherV1.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -31,20 +30,19 @@
 		00E356EE1AD99517003FC87E /* goalCatcherV1Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = goalCatcherV1Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		00E356F11AD99517003FC87E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		00E356F21AD99517003FC87E /* goalCatcherV1Tests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = goalCatcherV1Tests.m; sourceTree = "<group>"; };
+		0BE81BA9F832EAF886A631D1 /* Pods-goalCatcherV1.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-goalCatcherV1.release.xcconfig"; path = "Target Support Files/Pods-goalCatcherV1/Pods-goalCatcherV1.release.xcconfig"; sourceTree = "<group>"; };
 		13B07F961A680F5B00A75B9A /* goalCatcherV1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = goalCatcherV1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		13B07FAF1A68108700A75B9A /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AppDelegate.h; path = goalCatcherV1/AppDelegate.h; sourceTree = "<group>"; };
 		13B07FB01A68108700A75B9A /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AppDelegate.m; path = goalCatcherV1/AppDelegate.m; sourceTree = "<group>"; };
 		13B07FB51A68108700A75B9A /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = goalCatcherV1/Images.xcassets; sourceTree = "<group>"; };
 		13B07FB61A68108700A75B9A /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = goalCatcherV1/Info.plist; sourceTree = "<group>"; };
 		13B07FB71A68108700A75B9A /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = goalCatcherV1/main.m; sourceTree = "<group>"; };
-		60D30E9702F6C174FF5823EE /* libPods-goalCatcherV1-goalCatcherV1Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-goalCatcherV1-goalCatcherV1Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		70FA4B4BA8CCBA098F235A53 /* Pods-goalCatcherV1.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-goalCatcherV1.debug.xcconfig"; path = "Target Support Files/Pods-goalCatcherV1/Pods-goalCatcherV1.debug.xcconfig"; sourceTree = "<group>"; };
-		7FED7624B5362A77D115D6F7 /* Pods-goalCatcherV1.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-goalCatcherV1.release.xcconfig"; path = "Target Support Files/Pods-goalCatcherV1/Pods-goalCatcherV1.release.xcconfig"; sourceTree = "<group>"; };
+		4CE90405164DC29D7EC03DBA /* Pods-goalCatcherV1.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-goalCatcherV1.debug.xcconfig"; path = "Target Support Files/Pods-goalCatcherV1/Pods-goalCatcherV1.debug.xcconfig"; sourceTree = "<group>"; };
+		53082DBA6C8A28D8DEFB53AD /* libPods-goalCatcherV1-goalCatcherV1Tests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-goalCatcherV1-goalCatcherV1Tests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		7B23B96770BBC9DE333AB194 /* libPods-goalCatcherV1.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-goalCatcherV1.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = goalCatcherV1/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		89300BE9FB0CD1FDE2D3A89C /* Pods-goalCatcherV1-goalCatcherV1Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-goalCatcherV1-goalCatcherV1Tests.debug.xcconfig"; path = "Target Support Files/Pods-goalCatcherV1-goalCatcherV1Tests/Pods-goalCatcherV1-goalCatcherV1Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		8BC2FF107FEA66F14913EC74 /* libPods-goalCatcherV1.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-goalCatcherV1.a"; sourceTree = BUILT_PRODUCTS_DIR; };
-		CCACB537267A4E4E000E63FB /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Fonts; path = "../node_modules/react-native-vector-icons/Fonts"; sourceTree = "<group>"; };
-		D57BEC11CF63BA671879F8C0 /* Pods-goalCatcherV1-goalCatcherV1Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-goalCatcherV1-goalCatcherV1Tests.release.xcconfig"; path = "Target Support Files/Pods-goalCatcherV1-goalCatcherV1Tests/Pods-goalCatcherV1-goalCatcherV1Tests.release.xcconfig"; sourceTree = "<group>"; };
+		CC1126CC87B2D84DD93B30A0 /* Pods-goalCatcherV1-goalCatcherV1Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-goalCatcherV1-goalCatcherV1Tests.debug.xcconfig"; path = "Target Support Files/Pods-goalCatcherV1-goalCatcherV1Tests/Pods-goalCatcherV1-goalCatcherV1Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		DBACEEE6CAC92E027881398B /* Pods-goalCatcherV1-goalCatcherV1Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-goalCatcherV1-goalCatcherV1Tests.release.xcconfig"; path = "Target Support Files/Pods-goalCatcherV1-goalCatcherV1Tests/Pods-goalCatcherV1-goalCatcherV1Tests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
 
@@ -53,7 +51,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				5D87FC4E6AF768059F4903E9 /* libPods-goalCatcherV1-goalCatcherV1Tests.a in Frameworks */,
+				1B7FEFFBD4B718794234CAD4 /* libPods-goalCatcherV1-goalCatcherV1Tests.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -61,7 +59,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F1C0B67F93FF6A3A24D43059 /* libPods-goalCatcherV1.a in Frameworks */,
+				DC418D5EDF083026EDDD53D4 /* libPods-goalCatcherV1.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,7 +86,6 @@
 		13B07FAE1A68108700A75B9A /* goalCatcherV1 */ = {
 			isa = PBXGroup;
 			children = (
-				CCACB537267A4E4E000E63FB /* Fonts */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -103,10 +100,21 @@
 			isa = PBXGroup;
 			children = (
 				ED297162215061F000B7C4FE /* JavaScriptCore.framework */,
-				8BC2FF107FEA66F14913EC74 /* libPods-goalCatcherV1.a */,
-				60D30E9702F6C174FF5823EE /* libPods-goalCatcherV1-goalCatcherV1Tests.a */,
+				7B23B96770BBC9DE333AB194 /* libPods-goalCatcherV1.a */,
+				53082DBA6C8A28D8DEFB53AD /* libPods-goalCatcherV1-goalCatcherV1Tests.a */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		7D1629C6E5870603B85D9D0F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				4CE90405164DC29D7EC03DBA /* Pods-goalCatcherV1.debug.xcconfig */,
+				0BE81BA9F832EAF886A631D1 /* Pods-goalCatcherV1.release.xcconfig */,
+				CC1126CC87B2D84DD93B30A0 /* Pods-goalCatcherV1-goalCatcherV1Tests.debug.xcconfig */,
+				DBACEEE6CAC92E027881398B /* Pods-goalCatcherV1-goalCatcherV1Tests.release.xcconfig */,
+			);
+			path = Pods;
 			sourceTree = "<group>";
 		};
 		832341AE1AAA6A7D00B99B32 /* Libraries */ = {
@@ -124,8 +132,7 @@
 				00E356EF1AD99517003FC87E /* goalCatcherV1Tests */,
 				83CBBA001A601CBA00E9B192 /* Products */,
 				2D16E6871FA4F8E400B85C8A /* Frameworks */,
-				B7C3C9E93BDB928115E87C87 /* Pods */,
-				CB2A1DE0A88F495198DA51B3 /* Resources */,
+				7D1629C6E5870603B85D9D0F /* Pods */,
 			);
 			indentWidth = 2;
 			sourceTree = "<group>";
@@ -141,24 +148,6 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		B7C3C9E93BDB928115E87C87 /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				70FA4B4BA8CCBA098F235A53 /* Pods-goalCatcherV1.debug.xcconfig */,
-				7FED7624B5362A77D115D6F7 /* Pods-goalCatcherV1.release.xcconfig */,
-				89300BE9FB0CD1FDE2D3A89C /* Pods-goalCatcherV1-goalCatcherV1Tests.debug.xcconfig */,
-				D57BEC11CF63BA671879F8C0 /* Pods-goalCatcherV1-goalCatcherV1Tests.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
-		CB2A1DE0A88F495198DA51B3 /* Resources */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			name = Resources;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -166,12 +155,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 00E357021AD99517003FC87E /* Build configuration list for PBXNativeTarget "goalCatcherV1Tests" */;
 			buildPhases = (
-				A491D5A30F916909F832C1C7 /* [CP] Check Pods Manifest.lock */,
+				CBD517230577A0D0FD03380E /* [CP] Check Pods Manifest.lock */,
 				00E356EA1AD99517003FC87E /* Sources */,
 				00E356EB1AD99517003FC87E /* Frameworks */,
 				00E356EC1AD99517003FC87E /* Resources */,
-				24EA8F9AB7821620D47A90DA /* [CP] Embed Pods Frameworks */,
-				5B93259C3B0F2AAB81880526 /* [CP] Copy Pods Resources */,
+				900DB29265509548E8E9A25C /* [CP] Embed Pods Frameworks */,
+				4810481277899E2714C4984F /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -187,14 +176,14 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 13B07F931A680F5B00A75B9A /* Build configuration list for PBXNativeTarget "goalCatcherV1" */;
 			buildPhases = (
-				6061E0830F433A927CD81740 /* [CP] Check Pods Manifest.lock */,
+				4DACFF2DA944E9E1AC999669 /* [CP] Check Pods Manifest.lock */,
 				FD10A7F022414F080027D42C /* Start Packager */,
 				13B07F871A680F5B00A75B9A /* Sources */,
 				13B07F8C1A680F5B00A75B9A /* Frameworks */,
 				13B07F8E1A680F5B00A75B9A /* Resources */,
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
-				C8B18093281322389223151F /* [CP] Embed Pods Frameworks */,
-				9BA45B42C8437E4E43EAC2F4 /* [CP] Copy Pods Resources */,
+				3C26A5FD9AE5F327CCEDF55C /* [CP] Embed Pods Frameworks */,
+				EED41CAC6AC9F6083D629C38 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -253,7 +242,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CCACB53A267A4E4E000E63FB /* Fonts in Resources */,
 				81AB9BB82411601600AC10FF /* LaunchScreen.storyboard in Resources */,
 				13B07FBF1A68108700A75B9A /* Images.xcassets in Resources */,
 			);
@@ -274,26 +262,26 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "set -e\n\nexport NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
+			shellScript = "set -e\n\nexport NODE_BINARY=/usr/local/bin/node\n../node_modules/react-native/scripts/react-native-xcode.sh\n";
 		};
-		24EA8F9AB7821620D47A90DA /* [CP] Embed Pods Frameworks */ = {
+		3C26A5FD9AE5F327CCEDF55C /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-goalCatcherV1-goalCatcherV1Tests/Pods-goalCatcherV1-goalCatcherV1Tests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-goalCatcherV1/Pods-goalCatcherV1-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-goalCatcherV1-goalCatcherV1Tests/Pods-goalCatcherV1-goalCatcherV1Tests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-goalCatcherV1/Pods-goalCatcherV1-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-goalCatcherV1-goalCatcherV1Tests/Pods-goalCatcherV1-goalCatcherV1Tests-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-goalCatcherV1/Pods-goalCatcherV1-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		5B93259C3B0F2AAB81880526 /* [CP] Copy Pods Resources */ = {
+		4810481277899E2714C4984F /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -310,7 +298,7 @@
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-goalCatcherV1-goalCatcherV1Tests/Pods-goalCatcherV1-goalCatcherV1Tests-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		6061E0830F433A927CD81740 /* [CP] Check Pods Manifest.lock */ = {
+		4DACFF2DA944E9E1AC999669 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -332,24 +320,24 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		9BA45B42C8437E4E43EAC2F4 /* [CP] Copy Pods Resources */ = {
+		900DB29265509548E8E9A25C /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-goalCatcherV1/Pods-goalCatcherV1-resources-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-goalCatcherV1-goalCatcherV1Tests/Pods-goalCatcherV1-goalCatcherV1Tests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Copy Pods Resources";
+			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-goalCatcherV1/Pods-goalCatcherV1-resources-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-goalCatcherV1-goalCatcherV1Tests/Pods-goalCatcherV1-goalCatcherV1Tests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-goalCatcherV1/Pods-goalCatcherV1-resources.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-goalCatcherV1-goalCatcherV1Tests/Pods-goalCatcherV1-goalCatcherV1Tests-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
-		A491D5A30F916909F832C1C7 /* [CP] Check Pods Manifest.lock */ = {
+		CBD517230577A0D0FD03380E /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -371,21 +359,21 @@
 			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
 			showEnvVarsInLog = 0;
 		};
-		C8B18093281322389223151F /* [CP] Embed Pods Frameworks */ = {
+		EED41CAC6AC9F6083D629C38 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 			);
 			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-goalCatcherV1/Pods-goalCatcherV1-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-goalCatcherV1/Pods-goalCatcherV1-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			name = "[CP] Embed Pods Frameworks";
+			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-goalCatcherV1/Pods-goalCatcherV1-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-goalCatcherV1/Pods-goalCatcherV1-resources-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-goalCatcherV1/Pods-goalCatcherV1-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-goalCatcherV1/Pods-goalCatcherV1-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		FD10A7F022414F080027D42C /* Start Packager */ = {
@@ -440,14 +428,13 @@
 /* Begin XCBuildConfiguration section */
 		00E356F61AD99517003FC87E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 89300BE9FB0CD1FDE2D3A89C /* Pods-goalCatcherV1-goalCatcherV1Tests.debug.xcconfig */;
+			baseConfigurationReference = CC1126CC87B2D84DD93B30A0 /* Pods-goalCatcherV1-goalCatcherV1Tests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
 					"$(inherited)",
 				);
-				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = goalCatcherV1Tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -468,11 +455,10 @@
 		};
 		00E356F71AD99517003FC87E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D57BEC11CF63BA671879F8C0 /* Pods-goalCatcherV1-goalCatcherV1Tests.release.xcconfig */;
+			baseConfigurationReference = DBACEEE6CAC92E027881398B /* Pods-goalCatcherV1-goalCatcherV1Tests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				COPY_PHASE_STRIP = NO;
-				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = goalCatcherV1Tests/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 10.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -493,13 +479,12 @@
 		};
 		13B07F941A680F5B00A75B9A /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 70FA4B4BA8CCBA098F235A53 /* Pods-goalCatcherV1.debug.xcconfig */;
+			baseConfigurationReference = 4CE90405164DC29D7EC03DBA /* Pods-goalCatcherV1.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_BITCODE = NO;
-				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = goalCatcherV1/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -520,12 +505,11 @@
 		};
 		13B07F951A680F5B00A75B9A /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 7FED7624B5362A77D115D6F7 /* Pods-goalCatcherV1.release.xcconfig */;
+			baseConfigurationReference = 0BE81BA9F832EAF886A631D1 /* Pods-goalCatcherV1.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CURRENT_PROJECT_VERSION = 1;
-				HEADER_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = goalCatcherV1/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

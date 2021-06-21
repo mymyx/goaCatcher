@@ -3,6 +3,7 @@ import { Button, View, Text } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Signup from "./pages/account/login/index";
+import Login from "./pages/account/login/accountLogin";
 function HomeScreen({ navigation }) {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -29,8 +30,9 @@ function Nav() {
   return (
     <NavigationContainer>
       {/* 默认注册界面 */}
-      <Stack.Navigator headerMode="none" initialRouteName="Sign up">
+      <Stack.Navigator headerMode="none" initialRouteName="Login">
         <Stack.Screen name="Sign up" component={Signup} />
+        <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Home" component={HomeScreen} />
         <Stack.Screen name="Details" component={DetailsScreen} />
       </Stack.Navigator>

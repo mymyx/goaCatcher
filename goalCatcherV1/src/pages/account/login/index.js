@@ -1,10 +1,10 @@
 import React,{Component} from 'react';
-import {View,Text,StatusBar,TextInput,Dimensions,Stylesheet,TouchableOpacity,Image,ImageBackground, Button} from 'react-native';
+import {View,Text,StatusBar,TextInput,Dimensions,Stylesheet,TouchableOpacity,Image,ImageBackground} from 'react-native';
 import {pxToDp} from "../../../utils/stylesKits";
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { Input } from 'react-native-elements';
+import { Input,Button } from 'react-native-elements';
 import validator from "../../../utils/validator";
-
+import request from "../../../utils/request";
 // 类组件
 class Index extends Component{
 
@@ -41,7 +41,6 @@ class Index extends Component{
       white:'#fff',
       // 字体
       fonts:"ABeeZee-Regular",
-
       // // 输入框样式
       // edit:{
       //   // 输入栏边框
@@ -152,7 +151,7 @@ class Index extends Component{
             value={this.state.email}
             onChangeText={this.emailText}
             onSubmitEditing={this.emailSubmit}
-            errorMessage={this.state.emailValidate?"":"please input a valid email"}
+            errorMessage={this.state.emailValidate?"":"Please input a valid email"}
             leftIcon={{ type: 'font-awesome', name: 'envelope' ,color:"#979797",size:pxToDp(16)}}
           />
         </View>
@@ -164,7 +163,7 @@ class Index extends Component{
             onChangeText={this.passwordText}
             onSubmitEditing={this.passwordSubmit}
             placeholder='Password'
-            errorMessage={this.state.passwordValidate?"":"password must have at leat 8 characters"}
+            errorMessage={this.state.passwordValidate?"":"Password must have at leat 8 characters"}
             leftIcon={{ type: 'font-awesome', name: 'lock',color:"#979797" ,size:pxToDp(16)}}
           />
         </View>
@@ -180,35 +179,17 @@ class Index extends Component{
             leftIcon={{ type: 'font-awesome', name: 'lock' ,color:"#979797",size:pxToDp(16)}}
           />
         </View>
-
-          
-          {/* 用户名 */}
-          {/* <TextInput style={this.state.edit}
-            underlineColorAndroid='transparent'
-            placeholder='Username'
-            clearButtonMode="while-editing"/> */}
-
-          {/* 邮箱 */}
-          {/* <TextInput style={this.state.edit}
-            underlineColorAndroid='transparent'
-            placeholder='Email'
-            clearButtonMode="while-editing"/> */}
-
-          {/* 密码 */}
-          {/* <TextInput style={this.state.edit}
-            underlineColorAndroid='transparent'
-            placeholder='Password'
-            secureTextEntry={true}
-            clearButtonMode="while-editing"/> */}
-
-          {/* 确认密码 */}
-          {/* <TextInput style={this.state.edit}
-            underlineColorAndroid='transparent'
-            placeholder='Confirm Password'
-            secureTextEntry={true}
-            clearButtonMode="while-editing"/> */}
-          {/* 注册按钮 */}
-
+        {/* 按钮 */}
+        <View style={{width:Dimensions
+          .get('window').width,
+          alignItems:'center',
+          position:'absolute',
+          justifyContent:'center',
+          transform:[{translateY:pxToDp(520)}]}}>
+          <Button title="Register"
+                  buttonStyle={{borderRadius:100,backgroundColor:"#FD6D04",width:200}}
+                 />
+        </View>
       </ImageBackground>
     </View>
   }

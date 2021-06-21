@@ -12,7 +12,6 @@ target 'goalCatcherV1' do
     :hermes_enabled => false
   )
 
-
   target 'goalCatcherV1Tests' do
     inherit! :complete
     # Pods for testing
