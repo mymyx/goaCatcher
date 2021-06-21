@@ -124,12 +124,6 @@ class accountLogin extends Component{
     this.setState({confirmPasswordValidate});
   }
 
-  selected=(value)=>{
-    var isSelected=value;
-    console.log(value)
-    this.setState({isSelected});
-  }
-
 
 
   render(){
@@ -174,29 +168,28 @@ class accountLogin extends Component{
                 flexDirection:"row",
                 position:'absolute',
                 transform:[{translateY:pxToDp(350)}]}}>
-          <View style={{alignItems:"flex-start"}}>
-            {/* <CheckBox
-              disabled={false}
-              value={this.state.isSelected}
-              onValueChange={this.selected}
-            /> */}
+          <View >
+            <CheckBox
+              checked={this.state.isSelected}
+              onChange={() => {this.setState({isSelected: !this.state.isSelected})}}
+            />
           </View>
-          <View style={{alignItems:"flex-start"}}>
+          <View >
             <Text style={{
               color:this.state.grey,
-              transform:[{translateY:6}]
+              transform:[{translateY:18},{translateX:-this.state.width/20}]
             }}>
               Remember me
             </Text>
           </View>
-          {/* <View style={{alignItems:"flex-end"}}>
+          <View >
             <Text style={{
               color:this.state.textColor,
-              transform:[{translateY:6},{translateX:this.state.width/4}]
+              transform:[{translateY:18},{translateX:this.state.width/5}]
             }}>
               Forgot your password?
             </Text>
-          </View> */}
+          </View>
         </View>
         
       {/* 按钮 */}
@@ -204,10 +197,32 @@ class accountLogin extends Component{
           alignItems:'center',
           position:'absolute',
           justifyContent:'center',
-          transform:[{translateY:pxToDp(420)}]}}>
+          transform:[{translateY:pxToDp(400)}]}}>
           <Button title="Login"
                   buttonStyle={{borderRadius:100,backgroundColor:"#FD6D04",width:200}}
                  />
+        </View>
+
+        <View style={{width:this.state.width,
+                flexDirection:"row",
+                position:'absolute',
+                transform:[{translateY:pxToDp(430)}]}}>
+          <View >
+            <Text style={{
+              color:this.state.grey,
+              transform:[{translateY:18},{translateX:this.state.width/20}]
+            }}>
+              Not a member yet?
+            </Text>
+          </View>
+          <View >
+            <Text style={{
+              color:this.state.textColor,
+              transform:[{translateY:18},{translateX:this.state.width/3}]
+            }}>
+            Create your account
+            </Text>
+          </View>
         </View>
       </ImageBackground>
     </View>
