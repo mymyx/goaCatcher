@@ -42,7 +42,6 @@
 		7B23B96770BBC9DE333AB194 /* libPods-goalCatcherV1.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-goalCatcherV1.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = goalCatcherV1/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CC1126CC87B2D84DD93B30A0 /* Pods-goalCatcherV1-goalCatcherV1Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-goalCatcherV1-goalCatcherV1Tests.debug.xcconfig"; path = "Target Support Files/Pods-goalCatcherV1-goalCatcherV1Tests/Pods-goalCatcherV1-goalCatcherV1Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		CCBC414D2680B11600905374 /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; name = FontAwesome.ttf; path = "../node_modules/react-native-vector-icons/Fonts/FontAwesome.ttf"; sourceTree = "<group>"; };
 		DBACEEE6CAC92E027881398B /* Pods-goalCatcherV1-goalCatcherV1Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-goalCatcherV1-goalCatcherV1Tests.release.xcconfig"; path = "Target Support Files/Pods-goalCatcherV1-goalCatcherV1Tests/Pods-goalCatcherV1-goalCatcherV1Tests.release.xcconfig"; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -87,7 +86,6 @@
 		13B07FAE1A68108700A75B9A /* goalCatcherV1 */ = {
 			isa = PBXGroup;
 			children = (
-				CCBC414C2680B09900905374 /* Fonts */,
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.m */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
@@ -148,14 +146,6 @@
 				00E356EE1AD99517003FC87E /* goalCatcherV1Tests.xctest */,
 			);
 			name = Products;
-			sourceTree = "<group>";
-		};
-		CCBC414C2680B09900905374 /* Fonts */ = {
-			isa = PBXGroup;
-			children = (
-				CCBC414D2680B11600905374 /* FontAwesome.ttf */,
-			);
-			name = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

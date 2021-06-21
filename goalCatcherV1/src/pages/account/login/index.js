@@ -5,7 +5,6 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { Input,Button } from 'react-native-elements';
 import validator from "../../../utils/validator";
 import request from "../../../utils/request";
-import {ACCOUNT_LOGIN} from "../../../utils/pathMap";
 // 类组件
 class Index extends Component{
 
@@ -119,14 +118,6 @@ class Index extends Component{
     this.setState({confirmPasswordValidate});
   }
 
-  register=async()=>{
-    console.log(this.state.emailValidate);
-    if (this.state.emailValidate==true){
-      const res=await request.post(ACCOUNT_LOGIN,{phone:this.state.email});
-      console.log(res);
-    }
-  }
-
 
   render(){
     console.log("2.render");
@@ -197,7 +188,6 @@ class Index extends Component{
           transform:[{translateY:pxToDp(520)}]}}>
           <Button title="Register"
                   buttonStyle={{borderRadius:100,backgroundColor:"#FD6D04",width:200}}
-                  onPress={this.register}
                  />
         </View>
       </ImageBackground>

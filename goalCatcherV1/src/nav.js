@@ -30,7 +30,7 @@ function Nav() {
   return (
     <NavigationContainer>
       {/* 默认注册界面 */}
-      <Stack.Navigator headerMode="none" initialRouteName="Signup">
+      <Stack.Navigator headerMode="none" initialRouteName="Login">
         <Stack.Screen name="Sign up" component={Signup} />
         <Stack.Screen name="Login" component={Login} />
         <Stack.Screen name="Home" component={HomeScreen} />
