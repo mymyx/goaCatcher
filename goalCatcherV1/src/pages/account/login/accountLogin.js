@@ -1,13 +1,14 @@
-import React,{Component} from 'react';
+import React,{Component,useState} from 'react';
 import {View,Text,StatusBar,TextInput,Dimensions,Stylesheet,TouchableOpacity,Image,ImageBackground} from 'react-native';
 import {pxToDp} from "../../../utils/stylesKits";
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { Input,Button } from 'react-native-elements';
+import { Input,Button,CheckBox } from 'react-native-elements';
 import validator from "../../../utils/validator";
 import request from "../../../utils/request";
-import {ACCOUNT_LOGIN} from "../../../utils/pathMap";
+import {DrawerNavigator,TabNavigator,StackNavigator} from 'react-navigation';
+
 // 类组件
-class Index extends Component{
+class accountLogin extends Component{
 
 // 构造函数，用于组件初始化
   constructor(){
@@ -16,6 +17,10 @@ class Index extends Component{
 
     // 类组件内部数据/状态
     this.state={
+      width:Dimensions
+      .get('window').width,
+      height:Dimensions
+      .get('window').height,
       // 用户名
       username:"",
       // 邮箱
@@ -40,6 +45,8 @@ class Index extends Component{
       grey:"#979797",
       // 边框颜色
       white:'#fff',
+      // 是否点击checkbox
+      isSelected:false,
       // 字体
       fonts:"ABeeZee-Regular",
       // // 输入框样式
@@ -100,7 +107,6 @@ class Index extends Component{
     // }
     this.setState({emailValidate});
   }
-
   // 点击完成时触发
   passwordSubmit=()=>{
     var passwordValidate=true;
@@ -119,13 +125,6 @@ class Index extends Component{
     this.setState({confirmPasswordValidate});
   }
 
-  register=async()=>{
-    console.log(this.state.emailValidate);
-    if (this.state.emailValidate==true){
-      const res=await request.post(ACCOUNT_LOGIN,{phone:this.state.email});
-      console.log(res);
-    }
-  }
 
 
   render(){
@@ -137,25 +136,14 @@ class Index extends Component{
       <ImageBackground source={require("../../../images/loginbackground.png")} 
       style={{width: '100%', height: '100%'}}>
         <View style={{flex:1/6,transform:[{translateY:pxToDp(135)}]}}>
-        <Text style={this.state.signUpStyle}>Sign up
+        <Text style={this.state.signUpStyle}>Login
           </Text>
         </View>
         
         {/* 输入框 */}
         <View style={{flex:1/13,transform:[{translateY:pxToDp(100)}]}}>
           <Input
-            placeholder='Username'
-            // 最大长度11
-            maxLength={11}
-            value={this.state.username}
-            onChangeText={this.usernameText}
-            // onSubmitEditing={this.usernameSubmit}
-            leftIcon={{ type: 'font-awesome', name: 'user',color:"#979797",size:pxToDp(16)}}
-          />
-        </View>
-        <View style={{flex:1/13,transform:[{translateY:pxToDp(100)}]}}>
-          <Input
-            placeholder='Email'
+            placeholder='Username/Email'
             maxLength={64}
             value={this.state.email}
             onChangeText={this.emailText}
@@ -176,33 +164,73 @@ class Index extends Component{
             leftIcon={{ type: 'font-awesome', name: 'lock',color:"#979797" ,size:pxToDp(16)}}
           />
         </View>
-        <View style={{flex:1/13,transform:[{translateY:pxToDp(100)}]}}>
-          <Input
-            secureTextEntry={true}
-            maxLength={256}
-            value={this.state.verificatedPassword}
-            onChangeText={this.passwordVerificationText}
-            placeholder='Confirm password'
-            onSubmitEditing={this.confirmPasswordSubmit}
-            errorMessage={this.state.confirmPasswordValidate?"":"Your confirmed password and new password do not match"}
-            leftIcon={{ type: 'font-awesome', name: 'lock' ,color:"#979797",size:pxToDp(16)}}
-          />
+        {/* check box */}
+        <View style={{width:this.state.width,
+                flexDirection:"row",
+                position:'absolute',
+                transform:[{translateY:pxToDp(350)}]}}>
+          <View >
+            <CheckBox
+              checked={this.state.isSelected}
+              onPress={() => this.setState({ isSelected: !this.state.isSelected })}
+            />
+          </View>
+          <View >
+            <Text style={{
+              color:this.state.grey,
+              transform:[{translateY:18},{translateX:-this.state.width/20}]
+            }}>
+              Remember me
+            </Text>
+          </View>
+          <View >
+            <Text style={{
+              color:this.state.textColor,
+              transform:[{translateY:18},{translateX:this.state.width/5}]
+            }}>
+              Forgot your password?
+            </Text>
+          </View>
+          
         </View>
-        {/* 按钮 */}
-        <View style={{width:Dimensions
-          .get('window').width,
+        
+      {/* 按钮 */}
+        <View style={{width:this.state.width,
           alignItems:'center',
           position:'absolute',
           justifyContent:'center',
-          transform:[{translateY:pxToDp(520)}]}}>
-          <Button title="Register"
+          transform:[{translateY:pxToDp(400)}]}}>
+          <Button title="Login"
                   buttonStyle={{borderRadius:100,backgroundColor:"#FD6D04",width:200}}
-                  onPress={this.register}
                  />
         </View>
+        {/* not a member yet */}
+        <View style={{width:this.state.width,
+                flexDirection:"row",
+                position:'absolute',
+                transform:[{translateY:pxToDp(450)}]}}>
+          <View>
+            <Text style={{
+              color:this.state.grey,
+              transform:[{translateX:20}]
+            }}>
+              Not a member yet?
+            </Text>
+          </View>
+          <View >
+            <Text style={{
+              color:this.state.textColor,
+              transform:[{translateX:160}]
+            }}>
+              Create account
+            </Text>
+          </View>
+          
+        </View>
+
       </ImageBackground>
     </View>
   }
 }
 
-export default Index;
+export default accountLogin;
