@@ -5,7 +5,9 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { Input,Button } from 'react-native-elements';
 import validator from "../../../utils/validator";
 import request from "../../../utils/request";
+import Toast from "../../../utils/Toast";
 import {ACCOUNT_LOGIN} from "../../../utils/pathMap";
+import {ACCOUNT_VALIDATEVCODE} from "../../../utils/pathMap";
 import {
   CodeField,
   Cursor,
@@ -53,6 +55,9 @@ class Index extends Component{
       showLogin:true,
       // 验证码输入框的值
       vcodeText:"",
+
+      // 接口返回的验证码
+      vTrueCode:"",
       // 倒计时按钮文本
       btnText:"Send verification code",
       // 是否在倒计时中
@@ -116,7 +121,7 @@ class Index extends Component{
     this.setState({confirmPasswordValidate});
   }
   // 点击注册按钮切换验证码界面
-  signup=async()=>{
+  signup=()=>{
     if(this.state.emailValidate==true&&this.state.username.length!=0&&this.state.password.length>=8&&this.state.password==this.state.verificatedPassword){
       var showLogin=false;
       console.log(showLogin);
@@ -124,19 +129,23 @@ class Index extends Component{
     }
   }
 
-// 开启验证码定时器
+// 按按钮开启验证码定时器获取验证码
   countDown=async()=>{
     if(this.state.isCountDown){
       return;
     }
     console.log("开启倒计时");
+    this.setState({vTrueCode:"666666"});
     // 调用获取验证码接口
-    const res=await request.post(ACCOUNT_LOGIN,{phone:this.state.email});
-    console.log("code",res.data);
-    if(res.code=="10002"){
-    }
-    else{
-    }
+    // const res=await request.post(ACCOUNT_LOGIN,{phone:this.state.email});
+    // console.log("code",res.data);
+    // // 请求成功
+    // if(res.code=="10000"){
+    //   this.setState({vTrueCode:res.data});
+    // }
+    // else{
+    //   return;
+    // }
 
     let seconds=5;
     this.setState({isCountDown:true});
@@ -160,6 +169,33 @@ class Index extends Component{
   // 验证码输入框的值改变事件
   onVodeChangeText=(vcodeText)=>{
     this.setState({vcodeText});
+  }
+  // 验证码输入完毕事件
+  onVcodeSubmitEditing=async()=>{
+    // 对验证码做校验
+    const {email,vcodeText,vTrueCode}=this.state;
+    if(vcodeText.length!=6){
+      Toast.message("Verification code has 6 digits",2000,"center");
+      return;
+    }
+    if(vTrueCode.length!=6){
+      Toast.message("Click the button to get verification code",2000,"center");
+      return;
+    }
+    // 验证码是否一致
+    // const res=await request.post(ACCOUNT_VALIDATEVCODE,{
+    //   phone:email,
+    //   vcode:vcodeText
+    // });
+    // console.log(res);
+    if(vcodeText==vTrueCode){
+      Toast.message("Sucessful registration",2000,"center");
+    }
+    else{
+      Toast.message("Wrong verification code",2000,"center");
+      return;
+    }
+
   }
 
   // 渲染登录界面
@@ -267,6 +303,7 @@ class Index extends Component{
             // Use `caretHidden={false}` when users can't paste a text value, because context menu doesn't appear
             value={this.state.vcodeText}
             onChangeText={this.onVodeChangeText}
+            onSubmitEditing={this.onVcodeSubmitEditing}
             cellCount={6}
             rootStyle={styles.codeFieldRoot}
             keyboardType="number-pad"
