@@ -43,6 +43,10 @@ class Index extends Component{
       white:'#fff',
       // 字体
       fonts:"ABeeZee-Regular",
+      // 是否显示登录界面 true表示登录 false表示验证码界面
+      showLogin:false,
+      
+
       // // 输入框样式
       // edit:{
       //   // 输入栏边框
@@ -119,28 +123,31 @@ class Index extends Component{
     }
     this.setState({confirmPasswordValidate});
   }
-
+  // 点击注册按钮切换验证码界面
   signup=async()=>{
     if(this.state.emailValidate==true&&this.state.username.length!=0&&this.state.password.length>=8&&this.state.password==this.state.verificatedPassword){
       const res=await request.post(ACCOUNT_LOGIN,{phone:this.state.email});
+      var showLogin=false;
       console.log(res);
+      if(res.code=="10002"){
+        // 请求成功
+        console.log(showLogin);
+        this.setState({showLogin});
+      }
+      else{
+        
+      }
     }
   }
-
-
-  render(){
-    console.log("2.render");
+  // 渲染登录界面
+  renderLogin=()=>{
     return <View>
-      {/* 设置透明状态栏 */}
-      <StatusBar backgroundColor="transparent" translucent={true}/>
-      {/* 背景 */}
-      <ImageBackground source={require("../../../images/loginbackground.png")} 
+      <ImageBackground source={require("../../../images/loginbackground.png")}
       style={{width: '100%', height: '100%'}}>
         <View style={{flex:1/6,transform:[{translateY:pxToDp(135)}]}}>
-        <Text style={this.state.signUpStyle}>Sign up
-          </Text>
-        </View>
-        
+          <Text style={this.state.signUpStyle}>Sign up
+            </Text>
+        </View>  
         {/* 输入框 */}
         <View style={{flex:1/13,transform:[{translateY:pxToDp(100)}]}}>
           <Input
@@ -188,7 +195,7 @@ class Index extends Component{
             leftIcon={{ type: 'font-awesome', name: 'lock' ,color:"#979797",size:pxToDp(16)}}
           />
         </View>
-        {/* 按钮 */}
+        {/* 注册按钮 */}
         <View style={{width:Dimensions
           .get('window').width,
           alignItems:'center',
@@ -198,9 +205,58 @@ class Index extends Component{
           <Button title="Register"
                   onPress={this.signup}
                   buttonStyle={{borderRadius:100,backgroundColor:"#FD6D04",width:200}}
-                 />
+                />
         </View>
       </ImageBackground>
+    </View>
+  }
+
+  // 渲染验证码界面
+  renderVcode=()=>{
+    return <View>
+      <ImageBackground source={require("../../../images/loginbackground.png")}
+      style={{width: '100%', height: '100%'}}>
+        <View style={{alignItems:'center',flex:1/6,transform:[{translateY:pxToDp(135)}]}}>
+          <Text style={{
+                opacity:1,
+                color:"#FD6D04",
+                fontSize:50,
+                textAlign:"center",
+                marginLeft:20,
+                marginRight:20}}>Check your mailbox!
+          </Text>
+        </View>
+        <View style={{alignItems:'center',flex:1/6,transform:[{translateY:pxToDp(135)}]}}>
+          <Text style={{opacity:1,
+                        color:"#979797",
+                        fontSize:18,
+                        textAlign:"left",
+                        marginLeft:30,
+                        marginRight:30
+                        }}>Please input the verification code sent to your mailbox:{this.state.email} to finish registeration
+          </Text>
+        </View>
+        <View style={{width:Dimensions
+          .get('window').width,
+          alignItems:'center',
+          position:'absolute',
+          justifyContent:'center',
+          transform:[{translateY:pxToDp(480)}]}}>
+          <Button title="Resend verification code"
+                  onPress={this.signup}
+                  buttonStyle={{borderRadius:100,backgroundColor:"#FD6D04",width:250}}
+                />
+        </View>
+      </ImageBackground>
+    </View>
+  }
+  render(){
+    console.log("2.render");
+    return <View>
+      {/* 设置透明状态栏 */}
+      <StatusBar backgroundColor="transparent" translucent={true}/>
+      
+      {this.state.showLogin?this.renderLogin():this.renderVcode()}
     </View>
   }
 }
