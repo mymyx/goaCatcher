@@ -137,6 +137,9 @@ class Index extends Component{
       console.log(showLogin);
       this.setState({showLogin});
     }
+    else{
+      Toast.message("Please input valid user information",2000,"center");
+    }
   }
 
 // 按按钮开启验证码定时器获取验证码
