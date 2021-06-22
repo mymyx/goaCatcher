@@ -31,8 +31,10 @@ class Index extends Component{
       email:"",
       // 密码
       password:"",
-
+      // 二次输入密码
       verificatedPassword:"",
+      // 用户名是否合法
+      usernameValidate:true,
       // 邮箱是否合法
       emailValidate:true,
       // 密码是否合法
@@ -92,6 +94,14 @@ class Index extends Component{
   passwordVerificationText=(verificatedPassword)=>{
     this.setState({verificatedPassword});
     console.log('passwordVerification:',verificatedPassword);
+  }
+  // 键盘点击完成时触发
+  usernameSubmit=()=>{
+    var usernameValidate=true;
+    if(this.state.username.length==0){
+      usernameValidate=false;
+    }
+    this.setState({usernameValidate});
   }
 // 点击完成时触发
   emailSubmit=()=>{
@@ -190,6 +200,7 @@ class Index extends Component{
     // console.log(res);
     if(vcodeText==vTrueCode){
       Toast.message("Sucessful registration",2000,"center");
+      // 调用登录接口
     }
     else{
       Toast.message("Wrong verification code",2000,"center");
@@ -215,7 +226,8 @@ class Index extends Component{
             maxLength={11}
             value={this.state.username}
             onChangeText={this.usernameText}
-            // onSubmitEditing={this.usernameSubmit}
+            onSubmitEditing={this.usernameSubmit}
+            errorMessage={this.state.usernameValidate?"":"Please input a valid username"}
             leftIcon={{ type: 'font-awesome', name: 'user',color:"#979797",size:pxToDp(16)}}
           />
         </View>
