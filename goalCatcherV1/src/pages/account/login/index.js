@@ -1,11 +1,17 @@
 import React,{Component} from 'react';
-import {View,Text,StatusBar,TextInput,Dimensions,Stylesheet,TouchableOpacity,Image,ImageBackground} from 'react-native';
+import {View,Text,StatusBar,TextInput,Dimensions,StyleSheet,TouchableOpacity,Image,ImageBackground} from 'react-native';
 import {pxToDp} from "../../../utils/stylesKits";
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { Input,Button } from 'react-native-elements';
 import validator from "../../../utils/validator";
 import request from "../../../utils/request";
 import {ACCOUNT_LOGIN} from "../../../utils/pathMap";
+import {
+  CodeField,
+  Cursor,
+  useBlurOnFulfill,
+  useClearByFocusCell,
+} from 'react-native-confirmation-code-field';
 
 // 类组件
 class Index extends Component{
@@ -44,29 +50,15 @@ class Index extends Component{
       // 字体
       fonts:"ABeeZee-Regular",
       // 是否显示登录界面 true表示登录 false表示验证码界面
-      showLogin:false,
-      
-
-      // // 输入框样式
-      // edit:{
-      //   // 输入栏边框
-      //   // borderRadius:10,
-      //   borderColor:'#BFBFBF',
-      //   borderWidth:1,
-      //   // 输入栏间距
-      //   marginTop:pxToDp(10),
-      //   marginLeft:pxToDp(45),
-      //   marginRight:pxToDp(45),
-      //   // 透明度
-      //   opacity:1,
-      //   color:"#979797",
-      //   fontSize:16,
-      //   height: pxToDp(40),
-      //   // width: 40,
-      //   // textAlign:"center",
-      //   backgroundColor:'#fff',
-      //   // transform:[{translateY:pxToDp(160)}]
-      // },
+      showLogin:true,
+      // 验证码输入框的值
+      vcodeText:"",
+      // 倒计时按钮文本
+      btnText:"Send verification code",
+      // 是否在倒计时中
+      isCountDown:false,
+      // 控制验证码按钮
+      disabled:false,
 
       // Sign up样式
       signUpStyle:{
@@ -126,19 +118,50 @@ class Index extends Component{
   // 点击注册按钮切换验证码界面
   signup=async()=>{
     if(this.state.emailValidate==true&&this.state.username.length!=0&&this.state.password.length>=8&&this.state.password==this.state.verificatedPassword){
-      const res=await request.post(ACCOUNT_LOGIN,{phone:this.state.email});
       var showLogin=false;
-      console.log(res);
-      if(res.code=="10002"){
-        // 请求成功
-        console.log(showLogin);
-        this.setState({showLogin});
-      }
-      else{
-        
-      }
+      console.log(showLogin);
+      this.setState({showLogin});
     }
   }
+
+// 开启验证码定时器
+  countDown=async()=>{
+    if(this.state.isCountDown){
+      return;
+    }
+    console.log("开启倒计时");
+    // 调用获取验证码接口
+    const res=await request.post(ACCOUNT_LOGIN,{phone:this.state.email});
+    console.log("code",res.data);
+    if(res.code=="10002"){
+    }
+    else{
+    }
+
+    let seconds=5;
+    this.setState({isCountDown:true});
+    this.setState({disabled:true});
+    this.setState({ btnText:'Resend verification code('+seconds+'s)'  });
+    console.log(seconds);
+    let timeId=setInterval(
+      ()=>{
+        seconds--;
+        this.setState({btnText:'Resend verification code('+seconds+'s)'  });
+        if(seconds===0){
+          clearInterval(timeId);
+          this.setState({ btnText:'Send verification code'  });
+          this.setState({isCountDown:false});
+          this.setState({disabled:false});
+        }
+      },1000
+    );
+  }
+
+  // 验证码输入框的值改变事件
+  onVodeChangeText=(vcodeText)=>{
+    this.setState({vcodeText});
+  }
+
   // 渲染登录界面
   renderLogin=()=>{
     return <View>
@@ -226,7 +249,7 @@ class Index extends Component{
                 marginRight:20}}>Check your mailbox!
           </Text>
         </View>
-        <View style={{alignItems:'center',flex:1/6,transform:[{translateY:pxToDp(135)}]}}>
+        <View style={{alignItems:'center',flex:1/6,transform:[{translateY:pxToDp(150)}]}}>
           <Text style={{opacity:1,
                         color:"#979797",
                         fontSize:18,
@@ -236,14 +259,37 @@ class Index extends Component{
                         }}>Please input the verification code sent to your mailbox:{this.state.email} to finish registeration
           </Text>
         </View>
+        {/* 验证码输入框 */}
+        <View style={{transform:[{translateY:pxToDp(120)}]}}>
+          <CodeField
+            // ref={ref}
+            // {...props}
+            // Use `caretHidden={false}` when users can't paste a text value, because context menu doesn't appear
+            value={this.state.vcodeText}
+            onChangeText={this.onVodeChangeText}
+            cellCount={6}
+            rootStyle={styles.codeFieldRoot}
+            keyboardType="number-pad"
+            textContentType="oneTimeCode"
+            renderCell={({index, symbol, isFocused}) => (
+              <Text
+                key={index}
+                style={[styles.cell, isFocused && styles.focusCell]}>
+                {symbol || (isFocused ? <Cursor /> : null)}
+              </Text>
+            )}/>
+        </View>
+        
+        {/* 重发验证码按钮 */}
         <View style={{width:Dimensions
           .get('window').width,
           alignItems:'center',
           position:'absolute',
           justifyContent:'center',
-          transform:[{translateY:pxToDp(480)}]}}>
-          <Button title="Resend verification code"
-                  onPress={this.signup}
+          transform:[{translateY:pxToDp(400)}]}}>
+          <Button title={this.state.btnText}
+                  onPress={this.countDown}
+                  disabled={this.state.disabled}
                   buttonStyle={{borderRadius:100,backgroundColor:"#FD6D04",width:250}}
                 />
         </View>
@@ -260,5 +306,27 @@ class Index extends Component{
     </View>
   }
 }
+
+const styles = StyleSheet.create({
+  root: {flex: 1, padding: 20},
+  title: {textAlign: 'center', fontSize: 30},
+  // codeFieldRoot: {marginTop: 20},
+//   未选中单元格样式
+  cell: {
+    width: 40,
+    height: 40,
+    lineHeight: 38,
+    fontSize: 24,
+    borderBottomWidth: 2,
+    borderColor: '#979797',
+    textAlign: 'center',
+    color:'#FD6D04'
+  },
+//   选中输入单元格样式
+  focusCell: {
+    borderColor: '#FD6D04',
+    color:'#FD6D04'
+  },
+});
 
 export default Index;

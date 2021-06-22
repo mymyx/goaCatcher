@@ -4,6 +4,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Signup from "./pages/account/login/index";
 import Login from "./pages/account/login/accountLogin";
+import Demo from "./pages/Demo";
+
 function HomeScreen({ navigation }) {
   return (
     <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -33,8 +35,7 @@ function Nav() {
       <Stack.Navigator headerMode="none" initialRouteName="Signup">
         <Stack.Screen name="Sign up" component={Signup} />
         <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name="Home" component={HomeScreen} />
-        <Stack.Screen name="Details" component={DetailsScreen} />
+        <Stack.Screen name="Demo" component={Demo} />
       </Stack.Navigator>
     </NavigationContainer>
   );
