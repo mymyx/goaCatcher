@@ -54,7 +54,7 @@ class Index extends Component{
       // 字体
       fonts:"ABeeZee-Regular",
       // 是否显示登录界面 true表示登录 false表示验证码界面
-      showLogin:false,
+      showLogin:true,
       // 验证码输入框的值
       vcodeText:"",
 
@@ -130,6 +130,12 @@ class Index extends Component{
     }
     this.setState({confirmPasswordValidate});
   }
+
+  // 已有账号切换到登录界面
+  pressLogin=()=>{
+    console.log(this.props);
+    this.props.navigation.navigate("Login");
+  }
   // 点击注册按钮切换验证码界面
   signup=()=>{
     if(this.state.emailValidate==true&&this.state.username.length!=0&&this.state.password.length>=8&&this.state.password==this.state.verificatedPassword){
@@ -202,8 +208,8 @@ class Index extends Component{
     // });
     // console.log(res);
     if(vcodeText==vTrueCode){
-      Toast.message("Sucessful registration",2000,"center");
-      // 调用登录接口
+      // 跳转到登陆界面
+      this.props.navigation.navigate("Login");
     }
     else{
       Toast.message("Wrong verification code",2000,"center");
@@ -281,6 +287,47 @@ class Index extends Component{
                   buttonStyle={{borderRadius:100,backgroundColor:"#FD6D04",width:200}}
                 />
         </View>
+        
+        <View style={{width:Dimensions
+          .get('window').width,
+          alignItems:'center',
+          flexDirection:"row",
+          position:'absolute',
+          transform:[{translateY:pxToDp(550)}]}}>
+
+          <View style={{marginLeft:35,alignItems:'flex-start',flex:1/2}}>
+            <Text style={{
+                  color:this.state.grey}}>Already registered?</Text>
+          </View>
+
+          <View style={{marginRight:35,alignItems:'flex-end',flex:1/2}}>
+            <Text style={{
+                    color:this.state.textColor}}
+                  onPress={this.pressLogin}>Login</Text>
+          </View>
+        </View>
+
+        {/* <View style={{width:this.state.width,
+                flexDirection:"row",
+                position:'absolute',
+                transform:[{translateY:pxToDp(430)}]}}>
+          <View >
+            <Text style={{
+              color:this.state.grey,
+              transform:[{translateY:18},{translateX:this.state.width/20}]
+            }}>
+              Not a member yet?
+            </Text>
+          </View>
+          <View >
+            <Text style={{
+              color:this.state.textColor,
+              transform:[{translateY:18},{translateX:this.state.width/3}]
+            }}>
+            Create your account
+            </Text>
+          </View>
+        </View> */}
       </ImageBackground>
     </View>
   }

@@ -124,6 +124,11 @@ class accountLogin extends Component{
     this.setState({confirmPasswordValidate});
   }
 
+  pressSignUp=()=>{
+    console.log(this.props);
+    this.props.navigation.navigate("Sign");
+  }
+
 
 
   render(){
@@ -168,24 +173,24 @@ class accountLogin extends Component{
                 flexDirection:"row",
                 position:'absolute',
                 transform:[{translateY:pxToDp(350)}]}}>
-          <View >
+          <View style={{marginLeft:35,alignItems:'flex-end',flex:1/7}}>
             <CheckBox
               checked={this.state.isSelected}
               onChange={() => {this.setState({isSelected: !this.state.isSelected})}}
             />
           </View>
-          <View >
+          <View style={{alignItems:'flex-start',flex:5/14}}>
             <Text style={{
               color:this.state.grey,
-              transform:[{translateY:18},{translateX:-this.state.width/20}]
+              transform:[{translateY:17},{translateX:-15}]
             }}>
               Remember me
             </Text>
           </View>
-          <View >
+          <View style={{marginRight:35,alignItems:'flex-end',flex:1/2}}>
             <Text style={{
               color:this.state.textColor,
-              transform:[{translateY:18},{translateX:this.state.width/5}]
+              transform:[{translateY:17}]
             }}>
               Forgot your password?
             </Text>
@@ -202,28 +207,7 @@ class accountLogin extends Component{
                   buttonStyle={{borderRadius:100,backgroundColor:"#FD6D04",width:200}}
                  />
         </View>
-
-        <View style={{width:this.state.width,
-                flexDirection:"row",
-                position:'absolute',
-                transform:[{translateY:pxToDp(430)}]}}>
-          <View >
-            <Text style={{
-              color:this.state.grey,
-              transform:[{translateY:18},{translateX:this.state.width/20}]
-            }}>
-              Not a member yet?
-            </Text>
-          </View>
-          <View >
-            <Text style={{
-              color:this.state.textColor,
-              transform:[{translateY:18},{translateX:this.state.width/3}]
-            }}>
-            Create your account
-            </Text>
-          </View>
-        </View>
+        
       </ImageBackground>
     </View>
   }
