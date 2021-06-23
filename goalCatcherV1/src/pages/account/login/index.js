@@ -138,7 +138,7 @@ class Index extends Component{
   }
   // 点击注册按钮切换验证码界面
   signup=()=>{
-    if(this.state.emailValidate==true&&this.state.username.length!=0&&this.state.password.length>=8&&this.state.password==this.state.verificatedPassword){
+    if(this.state.emailValidate==true&&this.state.email.length!=0&&this.state.username.length!=0&&this.state.password.length>=8&&this.state.password==this.state.verificatedPassword){
       var showLogin=false;
       console.log(showLogin);
       this.setState({showLogin});

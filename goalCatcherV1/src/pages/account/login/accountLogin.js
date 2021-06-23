@@ -124,9 +124,10 @@ class accountLogin extends Component{
     this.setState({confirmPasswordValidate});
   }
 
-  pressSignUp=()=>{
-    console.log(this.props);
-    this.props.navigation.navigate("Sign");
+  select=()=>{
+    console.log("check")
+    var isSelected=!this.state.isSelected;
+    this.setState({isSelected});
   }
 
 
@@ -176,7 +177,7 @@ class accountLogin extends Component{
           <View style={{marginLeft:35,alignItems:'flex-end',flex:1/7}}>
             <CheckBox
               checked={this.state.isSelected}
-              onChange={() => {this.setState({isSelected: !this.state.isSelected})}}
+              onPress={this.select}
             />
           </View>
           <View style={{alignItems:'flex-start',flex:5/14}}>
