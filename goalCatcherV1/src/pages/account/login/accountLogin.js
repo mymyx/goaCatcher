@@ -21,15 +21,11 @@ class accountLogin extends Component{
       height:Dimensions
       .get('window').height,
       // 邮箱或用户名
-      emaiOrUsername:"",
+      emailOrUsername:"",
       // 密码
       password:"",
-      // 邮箱是否合法
-      emailValidate:true,
       // 密码是否合法
       passwordValidate:true,
-      // 两次密码是否一致
-      confirmPasswordValidate:true,
       // sign up字体大小
       topFontSize:50,
       // 输入框字体大小
@@ -74,9 +70,8 @@ class accountLogin extends Component{
     }
   }
 
-  emailText=(emaiOrUsername)=>{
+  emailOrUsernameText=(emailOrUsername)=>{
     this.setState({emailOrUsername});
-    console.log('email or username:',emailOrUsername);
   }
 
   passwordText=(password)=>{
@@ -119,8 +114,8 @@ class accountLogin extends Component{
           <Input
             placeholder='Username/Email'
             maxLength={64}
-            value={this.state.emaiOrUsername}
-            onChangeText={this.emailText}
+            value={this.state.emailOrUsername}
+            onChangeText={this.emailOrUsernameText}
             // errorMessage={this.state.emailValidate?"":"Please input a valid email/username"}
             leftIcon={{ type: 'font-awesome', name: 'envelope' ,color:"#979797",size:pxToDp(16)}}
           />
