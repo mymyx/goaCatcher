@@ -20,14 +20,10 @@ class accountLogin extends Component{
       .get('window').width,
       height:Dimensions
       .get('window').height,
-      // 用户名
-      username:"",
-      // 邮箱
-      email:"",
+      // 邮箱或用户名
+      emaiOrUsername:"",
       // 密码
       password:"",
-
-      verificatedPassword:"",
       // 邮箱是否合法
       emailValidate:true,
       // 密码是否合法
@@ -77,15 +73,10 @@ class accountLogin extends Component{
         textAlign:"center"}
     }
   }
-// 监听用户名文本变化
-  usernameText=(username)=>{
-    this.setState({username});
-    console.log('username:',username);
-  }
 
-  emailText=(email)=>{
-    this.setState({email});
-    console.log('email:',email);
+  emailText=(emaiOrUsername)=>{
+    this.setState({emailOrUsername});
+    console.log('email or username:',emailOrUsername);
   }
 
   passwordText=(password)=>{
@@ -93,19 +84,6 @@ class accountLogin extends Component{
     console.log('password:',password);
   }
 
-  passwordVerificationText=(verificatedPassword)=>{
-    this.setState({verificatedPassword});
-    console.log('passwordVerification:',verificatedPassword);
-  }
-// 点击完成时触发
-  emailSubmit=()=>{
-    const emailValidate=validator.validateEmail(this.state.email);
-    // if(!emailValidate){
-    //   this.setState({emailValidate});
-    //   return;
-    // }
-    this.setState({emailValidate});
-  }
   // 点击完成时触发
   passwordSubmit=()=>{
     var passwordValidate=true;
@@ -114,16 +92,7 @@ class accountLogin extends Component{
     }
     this.setState({passwordValidate});
   }
-
-  // 点击完成时触发
-  confirmPasswordSubmit=()=>{
-    var confirmPasswordValidate=false;
-    if(this.state.verificatedPassword==this.state.password){
-      confirmPasswordValidate=true;
-    }
-    this.setState({confirmPasswordValidate});
-  }
-
+  //勾选框
   select=()=>{
     console.log("check")
     var isSelected=!this.state.isSelected;
@@ -150,10 +119,9 @@ class accountLogin extends Component{
           <Input
             placeholder='Username/Email'
             maxLength={64}
-            value={this.state.email}
+            value={this.state.emaiOrUsername}
             onChangeText={this.emailText}
-            onSubmitEditing={this.emailSubmit}
-            errorMessage={this.state.emailValidate?"":"Please input a valid email"}
+            // errorMessage={this.state.emailValidate?"":"Please input a valid email/username"}
             leftIcon={{ type: 'font-awesome', name: 'envelope' ,color:"#979797",size:pxToDp(16)}}
           />
         </View>
