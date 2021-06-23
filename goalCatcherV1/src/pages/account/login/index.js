@@ -54,7 +54,7 @@ class Index extends Component{
       // 字体
       fonts:"ABeeZee-Regular",
       // 是否显示登录界面 true表示登录 false表示验证码界面
-      showLogin:true,
+      showLogin:false,
       // 验证码输入框的值
       vcodeText:"",
 
@@ -304,14 +304,15 @@ class Index extends Component{
           <Text style={{opacity:1,
                         color:"#979797",
                         fontSize:18,
-                        textAlign:"left",
+                        textAlign:"justify",
                         marginLeft:30,
                         marginRight:30
-                        }}>Please input the verification code sent to your mailbox:{this.state.email} to finish registeration
+                        }}>Once you click the button please input the verification code sent to your mailbox: {this.state.email} to finish registration
           </Text>
         </View>
         {/* 验证码输入框 */}
-        <View style={{transform:[{translateY:pxToDp(120)}]}}>
+        <View style={{transform:[{translateY:Dimensions
+            .get('window').height/6}]}}>
           <CodeField
             // ref={ref}
             // {...props}
@@ -321,7 +322,7 @@ class Index extends Component{
             onSubmitEditing={this.onVcodeSubmitEditing}
             cellCount={6}
             rootStyle={styles.codeFieldRoot}
-            keyboardType="number-pad"
+            keyboardType="default"
             textContentType="oneTimeCode"
             renderCell={({index, symbol, isFocused}) => (
               <Text
@@ -333,12 +334,14 @@ class Index extends Component{
         </View>
         
         {/* 重发验证码按钮 */}
-        <View style={{width:Dimensions
+        <View style={{
+          width:Dimensions
           .get('window').width,
           alignItems:'center',
           position:'absolute',
           justifyContent:'center',
-          transform:[{translateY:pxToDp(400)}]}}>
+          transform:[{translateY:Dimensions
+            .get('window').height/1.7}]}}>
           <Button title={this.state.btnText}
                   onPress={this.countDown}
                   disabled={this.state.disabled}
@@ -365,11 +368,13 @@ const styles = StyleSheet.create({
   // codeFieldRoot: {marginTop: 20},
 //   未选中单元格样式
   cell: {
-    width: 40,
-    height: 40,
-    lineHeight: 38,
+    width: 37,
+    height: 37,
+    marginLeft:13,
+    marginRight:13,
+    lineHeight: 32,
     fontSize: 24,
-    borderBottomWidth: 2,
+    borderWidth: 2,
     borderColor: '#979797',
     textAlign: 'center',
     color:'#FD6D04'
