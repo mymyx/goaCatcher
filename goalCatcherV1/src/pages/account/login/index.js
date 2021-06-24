@@ -80,7 +80,7 @@ class Index extends Component{
     this.setState({username});
     console.log('username:',username);
   }
-
+// 用户名输入获得焦点之后清空输入框
   usernameFocus=()=>{
     const username="";
     this.setState({username});
@@ -168,6 +168,7 @@ class Index extends Component{
     }
   }
 
+
 // 按按钮开启验证码定时器获取验证码
   countDown=async()=>{
     if(this.state.isCountDown){
@@ -238,6 +239,7 @@ class Index extends Component{
 
   }
 
+
   // 渲染注册界面
   renderLogin=()=>{
     return <View>
@@ -278,6 +280,7 @@ class Index extends Component{
             secureTextEntry={true}
             maxLength={256}
             value={this.state.password}
+            onFocus={this.passwordFocus}
             onChangeText={this.passwordText}
             onSubmitEditing={this.passwordSubmit}
             placeholder='Password'
@@ -290,7 +293,7 @@ class Index extends Component{
             secureTextEntry={true}
             maxLength={256}
             value={this.state.verificatedPassword}
-            onFocus={this.passwordFocus}
+            onFocus={this.validateFocus}
             onChangeText={this.passwordVerificationText}
             placeholder='Confirm password'
             onSubmitEditing={this.confirmPasswordSubmit}

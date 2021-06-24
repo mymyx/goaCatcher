@@ -70,6 +70,7 @@ class accountLogin extends Component{
         textAlign:"center"}
     }
   }
+  // 用户输入框获得焦点时文本清空
   focus=()=>{
     const emailOrUsername="";
     this.setState({emailOrUsername});
@@ -90,7 +91,7 @@ class accountLogin extends Component{
     console.log('password:',password);
   }
 
-  // 点击完成时触发
+  // 点击完成时触发验证密码合法性
   passwordSubmit=()=>{
     var passwordValidate=true;
     if(this.state.password.length<8){
