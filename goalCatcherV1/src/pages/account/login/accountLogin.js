@@ -5,7 +5,8 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 import { Input,Button,CheckBox } from 'react-native-elements';
 import validator from "../../../utils/validator";
 import request from "../../../utils/request";
-
+import SyncStorage from "../../../utils/SyncStorage";
+import Toast from '../../../utils/Toast';
 // 类组件
 class accountLogin extends Component{
 
@@ -21,7 +22,7 @@ class accountLogin extends Component{
       height:Dimensions
       .get('window').height,
       // 邮箱或用户名
-      emailOrUsername:"",
+      emailOrUsername:SyncStorage.getValue("username/email"),
       // 密码
       password:"",
       // 密码是否合法
@@ -37,7 +38,7 @@ class accountLogin extends Component{
       // 边框颜色
       white:'#fff',
       // 是否点击checkbox
-      isSelected:false,
+      isSelected:true,
       // 字体
       fonts:"ABeeZee-Regular",
       // // 输入框样式
@@ -70,9 +71,12 @@ class accountLogin extends Component{
     }
   }
 
+
   emailOrUsernameText=(emailOrUsername)=>{
     this.setState({emailOrUsername});
+    console.log('user name or email:',emailOrUsername);
   }
+
 
   passwordText=(password)=>{
     this.setState({password});
@@ -89,15 +93,32 @@ class accountLogin extends Component{
   }
   //勾选框
   select=()=>{
-    console.log("check")
+    console.log("check");
     var isSelected=!this.state.isSelected;
     this.setState({isSelected});
+  }
+  // 按钮事件
+  rememberMe=()=>{
+    // 跳转到主界面
+    if(this.state.emailOrUsername.length!=0&&this.state.password.length>=8){
+      if (this.state.isSelected==true){
+        SyncStorage.setValue("username/email",this.state.emailOrUsername);
+      }
+      else{
+        SyncStorage.setValue("username/email","");
+      }
+      this.props.navigation.navigate("Demo");
+    }
+    else{
+      Toast.message("Wrong username/email or password!",2000,"center");
+    }
   }
 
 
 
   render(){
     console.log("2.render");
+    console.log(SyncStorage.getValue("username/email"));
     return <View>
       {/* 设置透明状态栏 */}
       <StatusBar backgroundColor="transparent" translucent={true}/>
@@ -112,7 +133,7 @@ class accountLogin extends Component{
         {/* 输入框 */}
         <View style={{flex:1/13,transform:[{translateY:pxToDp(100)}]}}>
           <Input
-            placeholder='Username/Email'
+            placeholder={"username/email"}
             maxLength={64}
             value={this.state.emailOrUsername}
             onChangeText={this.emailOrUsernameText}
@@ -169,6 +190,7 @@ class accountLogin extends Component{
           transform:[{translateY:pxToDp(400)}]}}>
           <Button title="Login"
                   buttonStyle={{borderRadius:100,backgroundColor:"#FD6D04",width:200}}
+                  onPress={this.rememberMe}
                  />
         </View>
         
