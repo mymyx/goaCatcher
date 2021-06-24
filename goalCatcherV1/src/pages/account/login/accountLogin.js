@@ -70,10 +70,17 @@ class accountLogin extends Component{
         textAlign:"center"}
     }
   }
-
+  focus=()=>{
+    const emailOrUsername="";
+    this.setState({emailOrUsername});
+  }
+  passwordFocus=()=>{
+    const password="";
+    this.setState({password});
+  }
 
   emailOrUsernameText=(emailOrUsername)=>{
-    this.setState({emailOrUsername});
+    this.setState({emailOrUsername})
     console.log('user name or email:',emailOrUsername);
   }
 
@@ -107,6 +114,7 @@ class accountLogin extends Component{
       else{
         SyncStorage.setValue("username/email","");
       }
+      // 跳转
       this.props.navigation.navigate("Demo");
     }
     else{
@@ -135,6 +143,7 @@ class accountLogin extends Component{
           <Input
             placeholder={"username/email"}
             maxLength={64}
+            onFocus={this.focus}
             value={this.state.emailOrUsername}
             onChangeText={this.emailOrUsernameText}
             // errorMessage={this.state.emailValidate?"":"Please input a valid email/username"}
@@ -147,6 +156,7 @@ class accountLogin extends Component{
             maxLength={256}
             value={this.state.password}
             onChangeText={this.passwordText}
+            onFocus={this.passwordFocus}
             onSubmitEditing={this.passwordSubmit}
             placeholder='Password'
             errorMessage={this.state.passwordValidate?"":"Password must have at leat 8 characters"}

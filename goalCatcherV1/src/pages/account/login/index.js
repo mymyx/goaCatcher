@@ -81,14 +81,34 @@ class Index extends Component{
     console.log('username:',username);
   }
 
+  usernameFocus=()=>{
+    const username="";
+    this.setState({username});
+  }
+
   emailText=(email)=>{
     this.setState({email});
     console.log('email:',email);
   }
 
+  emailFocus=()=>{
+    const email="";
+    this.setState({email});
+  }
+
   passwordText=(password)=>{
     this.setState({password});
     console.log('password:',password);
+  }
+
+  passwordFocus=()=>{
+    const password="";
+    this.setState({password});
+  }
+
+  validateFocus=()=>{
+    const verificatedPassword="";
+    this.setState({verificatedPassword});
   }
 
   passwordVerificationText=(verificatedPassword)=>{
@@ -166,7 +186,7 @@ class Index extends Component{
     //   return;
     // }
 
-    let seconds=5;
+    let seconds=60;
     this.setState({isCountDown:true});
     this.setState({disabled:true});
     this.setState({ btnText:'Resend verification code('+seconds+'s)'  });
@@ -218,7 +238,7 @@ class Index extends Component{
 
   }
 
-  // 渲染登录界面
+  // 渲染注册界面
   renderLogin=()=>{
     return <View>
       <ImageBackground source={require("../../../images/loginbackground.png")}
@@ -233,6 +253,7 @@ class Index extends Component{
             placeholder='Username'
             // 最大长度11
             maxLength={11}
+            onFocus={this.usernameFocus}
             value={this.state.username}
             onChangeText={this.usernameText}
             onSubmitEditing={this.usernameSubmit}
@@ -244,6 +265,7 @@ class Index extends Component{
           <Input
             placeholder='Email'
             maxLength={64}
+            onFocus={this.emailFocus}
             value={this.state.email}
             onChangeText={this.emailText}
             onSubmitEditing={this.emailSubmit}
@@ -268,6 +290,7 @@ class Index extends Component{
             secureTextEntry={true}
             maxLength={256}
             value={this.state.verificatedPassword}
+            onFocus={this.passwordFocus}
             onChangeText={this.passwordVerificationText}
             placeholder='Confirm password'
             onSubmitEditing={this.confirmPasswordSubmit}
