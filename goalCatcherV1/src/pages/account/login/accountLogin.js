@@ -24,7 +24,7 @@ class accountLogin extends Component{
       // 邮箱或用户名
       emailOrUsername:SyncStorage.getValue("username/email"),
       // 密码
-      password:"",
+      password:SyncStorage.getValue("password"),
       // 密码是否合法
       passwordValidate:true,
       // sign up字体大小
@@ -110,13 +110,14 @@ class accountLogin extends Component{
     // 跳转到主界面
     if(this.state.emailOrUsername.length!=0&&this.state.password.length>=8){
       if (this.state.isSelected==true){
-        SyncStorage.setValue("username/email",this.state.emailOrUsername);
+        SyncStorage.setValue("password",this.state.password);
       }
       else{
-        SyncStorage.setValue("username/email","");
+        SyncStorage.setValue("password","");
       }
       // 跳转
       this.props.navigation.navigate("Demo");
+      SyncStorage.setValue("username/email",this.state.emailOrUsername);
     }
     else{
       Toast.message("Wrong username/email or password!",2000,"center");
