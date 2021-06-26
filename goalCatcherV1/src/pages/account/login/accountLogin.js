@@ -91,6 +91,9 @@ class accountLogin extends Component{
     console.log('password:',password);
   }
 
+  resetPassword=()=>{
+    this.props.navigation.navigate("Reset");
+  }
   // 点击完成时触发验证密码合法性
   passwordSubmit=()=>{
     var passwordValidate=true;
@@ -116,14 +119,13 @@ class accountLogin extends Component{
         SyncStorage.setValue("password","");
       }
       // 跳转
-      this.props.navigation.navigate("Demo");
+      this.props.navigation.navigate("Reset");
       SyncStorage.setValue("username/email",this.state.emailOrUsername);
     }
     else{
       Toast.message("Wrong username/email or password!",2000,"center");
     }
   }
-
 
 
   render(){
@@ -185,7 +187,8 @@ class accountLogin extends Component{
             </Text>
           </View>
           <View style={{marginRight:35,alignItems:'flex-end',flex:1/2}}>
-            <Text style={{
+            <Text onPress={this.resetPassword}
+            style={{
               color:this.state.textColor,
               transform:[{translateY:17}]
             }}>

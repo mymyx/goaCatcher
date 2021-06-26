@@ -3,7 +3,7 @@ import {
     AsyncStorage
 } from 'react-native';
 
-// 本地键值对
+// 本地键值对 cache
 export default class SyncStorage {
 
     static cache: { [key: string]: string} = {}

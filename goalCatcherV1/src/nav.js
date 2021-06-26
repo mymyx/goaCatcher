@@ -4,7 +4,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import Sign from "./pages/account/login/index";
 import Login from "./pages/account/login/accountLogin";
-import Demo from "./pages/Demo";
+import Reset from "./pages/account/login/reset";
+// import ResetPassword from "./pages/account/login/restPassword";
 
 function HomeScreen({ navigation }) {
   return (
@@ -33,9 +34,10 @@ function Nav() {
     <NavigationContainer>
       {/* 默认注册界面 */}
       <Stack.Navigator headerMode="none" initialRouteName="Sign">
+        {/* <Stack.Screen name="ResetPassword" component={ResetPassword} /> */}
         <Stack.Screen name="Sign" component={Sign} />
         <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name="Demo" component={Demo} />
+        <Stack.Screen name="Reset" component={Reset} />
       </Stack.Navigator>
     </NavigationContainer>
   );

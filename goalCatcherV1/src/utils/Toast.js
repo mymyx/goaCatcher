@@ -4,6 +4,7 @@ import {Toast,Theme  } from "teaset";
 
 let customKey = null;
 
+// 消息提示框
 Toast.showLoading=(text)=> {
   if (customKey) return;
   customKey = Toast.show({

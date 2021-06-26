@@ -7,6 +7,7 @@ import validator from "../../../utils/validator";
 import request from "../../../utils/request";
 import Toast from "../../../utils/Toast";
 import {ACCOUNT_LOGIN} from "../../../utils/pathMap";
+import SyncStorage from "../../../utils/SyncStorage";
 import {ACCOUNT_VALIDATEVCODE} from "../../../utils/pathMap";
 import {
   CodeField,
@@ -14,11 +15,9 @@ import {
   useBlurOnFulfill,
   useClearByFocusCell,
 } from 'react-native-confirmation-code-field';
-
 // 类组件
-class Index extends Component{
-
-// 构造函数，用于组件初始化
+class reset extends Component{
+  // 构造函数，用于组件初始化
   constructor(){
     super();
     console.log("1.constructor");
@@ -240,127 +239,14 @@ class Index extends Component{
   }
 
 
-  // 渲染注册界面
-  renderLogin=()=>{
+
+  render(){
+    console.log("2.render");
+    console.log(SyncStorage.getValue("username/email"));
     return <View>
-      <ImageBackground source={require("../../../images/loginbackground.png")}
-      style={{width: '100%', height: '100%'}}>
-        <View style={{flex:1/6,transform:[{translateY:pxToDp(135)}]}}>
-          <Text style={this.state.signUpStyle}>Sign up
-            </Text>
-        </View>  
-        {/* 输入框 */}
-        <View style={{flex:1/13,transform:[{translateY:pxToDp(100)}]}}>
-          <Input
-            placeholder='Username'
-            // 最大长度11
-            maxLength={11}
-            onFocus={this.usernameFocus}
-            value={this.state.username}
-            onChangeText={this.usernameText}
-            onSubmitEditing={this.usernameSubmit}
-            errorMessage={this.state.usernameValidate?"":"Please input a valid username"}
-            leftIcon={{ type: 'font-awesome', name: 'user',color:"#979797",size:pxToDp(16)}}
-          />
-        </View>
-        <View style={{flex:1/13,transform:[{translateY:pxToDp(100)}]}}>
-          <Input
-            placeholder='Email'
-            maxLength={64}
-            onFocus={this.emailFocus}
-            value={this.state.email}
-            onChangeText={this.emailText}
-            onSubmitEditing={this.emailSubmit}
-            errorMessage={this.state.emailValidate?"":"Please input a valid email"}
-            leftIcon={{ type: 'font-awesome', name: 'envelope' ,color:"#979797",size:pxToDp(16)}}
-          />
-        </View>
-        <View style={{flex:1/13,transform:[{translateY:pxToDp(100)}]}}>
-          <Input
-            secureTextEntry={true}
-            maxLength={256}
-            value={this.state.password}
-            onFocus={this.passwordFocus}
-            onChangeText={this.passwordText}
-            onSubmitEditing={this.passwordSubmit}
-            placeholder='Password'
-            errorMessage={this.state.passwordValidate?"":"Password must have at leat 8 characters"}
-            leftIcon={{ type: 'font-awesome', name: 'lock',color:"#979797" ,size:pxToDp(16)}}
-          />
-        </View>
-        <View style={{flex:1/13,transform:[{translateY:pxToDp(100)}]}}>
-          <Input
-            secureTextEntry={true}
-            maxLength={256}
-            value={this.state.verificatedPassword}
-            onFocus={this.validateFocus}
-            onChangeText={this.passwordVerificationText}
-            placeholder='Confirm password'
-            onSubmitEditing={this.confirmPasswordSubmit}
-            errorMessage={this.state.confirmPasswordValidate?"":"Your confirmed password and new password do not match"}
-            leftIcon={{ type: 'font-awesome', name: 'lock' ,color:"#979797",size:pxToDp(16)}}
-          />
-        </View>
-        {/* 注册按钮 */}
-        <View style={{width:Dimensions
-          .get('window').width,
-          alignItems:'center',
-          position:'absolute',
-          justifyContent:'center',
-          transform:[{translateY:pxToDp(480)}]}}>
-          <Button title="Register"
-                  onPress={this.signup}
-                  buttonStyle={{borderRadius:100,backgroundColor:"#FD6D04",width:200}}
-                />
-        </View>
-        
-        <View style={{width:Dimensions
-          .get('window').width,
-          alignItems:'center',
-          flexDirection:"row",
-          position:'absolute',
-          transform:[{translateY:pxToDp(550)}]}}>
-
-          <View style={{marginLeft:35,alignItems:'flex-start',flex:1/2}}>
-            <Text style={{
-                  color:this.state.grey}}>Already registered?</Text>
-          </View>
-
-          <View style={{marginRight:35,alignItems:'flex-end',flex:1/2}}>
-            <Text style={{
-                    color:this.state.textColor}}
-                  onPress={this.pressLogin}>Login</Text>
-          </View>
-        </View>
-
-        {/* <View style={{width:this.state.width,
-                flexDirection:"row",
-                position:'absolute',
-                transform:[{translateY:pxToDp(430)}]}}>
-          <View >
-            <Text style={{
-              color:this.state.grey,
-              transform:[{translateY:18},{translateX:this.state.width/20}]
-            }}>
-              Not a member yet?
-            </Text>
-          </View>
-          <View >
-            <Text style={{
-              color:this.state.textColor,
-              transform:[{translateY:18},{translateX:this.state.width/3}]
-            }}>
-            Create your account
-            </Text>
-          </View>
-        </View> */}
-      </ImageBackground>
-    </View>
-  }
-
-  // 渲染验证码界面
-  renderVcode=()=>{
-    return <View>
+      {/* 设置透明状态栏 */}
+      <StatusBar backgroundColor="transparent" translucent={true}/>
+      {/* 背景 */}
       <ImageBackground source={require("../../../images/loginbackground.png")}
       style={{width: '100%', height: '100%'}}>
         <View style={{alignItems:'center',flex:1/6,transform:[{translateY:pxToDp(135)}]}}>
@@ -424,15 +310,6 @@ class Index extends Component{
       </ImageBackground>
     </View>
   }
-  render(){
-    console.log("2.render");
-    return <View>
-      {/* 设置透明状态栏 */}
-      <StatusBar backgroundColor="transparent" translucent={true}/>
-      
-      {this.state.showLogin?this.renderLogin():this.renderVcode()}
-    </View>
-  }
 }
 
 const styles = StyleSheet.create({
@@ -459,4 +336,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default Index;
+export default reset;
