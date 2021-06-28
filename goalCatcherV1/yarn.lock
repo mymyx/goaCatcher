@@ -7191,6 +7191,11 @@
     "split-on-first" "^1.0.0"
     "strict-uri-encode" "^2.0.0"
 
+"querystring@^0.2.1":
+  "integrity" "sha1-QNd2FbsJ0WkCqFw+OKqLXtdhwt0="
+  "resolved" "https://registry.nlark.com/querystring/download/querystring-0.2.1.tgz"
+  "version" "0.2.1"
+
 "querystringify@^2.1.1":
   "integrity" "sha1-M0WUG0FTy50ILY7uTNogFqmu9/Y="
   "resolved" "https://registry.npm.taobao.org/querystringify/download/querystringify-2.2.0.tgz"

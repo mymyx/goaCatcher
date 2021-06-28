@@ -7,14 +7,13 @@ import validator from "../../../utils/validator";
 import request from "../../../utils/request";
 import Toast from "../../../utils/Toast";
 import {ACCOUNT_LOGIN} from "../../../utils/pathMap";
-import {ACCOUNT_VALIDATEVCODE} from "../../../utils/pathMap";
+import {ACCOUNT_REGINFO} from "../../../utils/pathMap";
 import {
   CodeField,
   Cursor,
   useBlurOnFulfill,
   useClearByFocusCell,
 } from 'react-native-confirmation-code-field';
-
 // 类组件
 class Index extends Component{
 
@@ -41,6 +40,7 @@ class Index extends Component{
       passwordValidate:true,
       // 两次密码是否一致
       confirmPasswordValidate:true,
+      token:"",
       // sign up字体大小
       topFontSize:50,
       // 输入框字体大小
@@ -57,16 +57,14 @@ class Index extends Component{
       showLogin:true,
       // 验证码输入框的值
       vcodeText:"",
-
-      // 接口返回的验证码
-      vTrueCode:"666666",
       // 倒计时按钮文本
       btnText:"Send verification code",
       // 是否在倒计时中
       isCountDown:false,
       // 控制验证码按钮
       disabled:false,
-
+      //验证码提示
+      valiMsg:"",
       // Sign up样式
       signUpStyle:{
         opacity:1,
@@ -157,11 +155,28 @@ class Index extends Component{
     this.props.navigation.navigate("Login");
   }
   // 点击注册按钮切换验证码界面
-  signup=()=>{
+  signup=async()=>{
+    // 调用注册接口 type1
     if(this.state.emailValidate==true&&this.state.email.length!=0&&this.state.username.length!=0&&this.state.password.length>=8&&this.state.password==this.state.verificatedPassword){
-      var showLogin=false;
-      console.log(showLogin);
-      this.setState({showLogin});
+      var queryString=require('querystring');
+      const res=await request.post(ACCOUNT_REGINFO,queryString.stringify({
+        'nickname':this.state.username,
+        'type':1,
+        'password':this.state.password,
+        'email':this.state.email
+      }));
+
+      console.log(res);
+      if (res.status==true){
+        var token=res.token;
+        this.setState({token});
+        console.log(this.state.token);
+        var showLogin=false;
+        this.setState({showLogin});
+      }
+      else{
+        Toast.message("Something went wrong, please check your network",2000,"center");
+      }
     }
     else{
       Toast.message("Please input valid user information",2000,"center");
@@ -213,28 +228,23 @@ class Index extends Component{
   // 验证码输入完毕事件
   onVcodeSubmitEditing=async()=>{
     // 对验证码做校验
-    const {email,vcodeText,vTrueCode}=this.state;
+    const {vcodeText,token}=this.state;
     if(vcodeText.length!=6){
       Toast.message("Verification code has 6 digits",2000,"center");
-      return;
-    }
-    if(vTrueCode.length!=6){
-      Toast.message("Click the button to get verification code",2000,"center");
-      return;
-    }
-    // 验证码是否一致
-    // const res=await request.post(ACCOUNT_VALIDATEVCODE,{
-    //   phone:email,
-    //   vcode:vcodeText
-    // });
-    // console.log(res);
-    if(vcodeText==vTrueCode){
-      // 跳转到登陆界面
-      this.props.navigation.navigate("Login");
     }
     else{
-      Toast.message("Wrong verification code",2000,"center");
-      return;
+      var queryString=require('querystring');
+      const res=await request.post(ACCOUNT_REGINFO,queryString.stringify({
+        'verifyCode':vcodeText,
+        'token':token,
+      }));
+      console.log(res);
+      if(res.status==true){
+        this.props.navigation.navigate("Reset");
+      }
+      else{
+        Toast.message("Wrong verification code",2000,"center");
+      }
     }
 
   }
@@ -385,7 +395,7 @@ class Index extends Component{
         </View>
         {/* 验证码输入框 */}
         <View style={{transform:[{translateY:Dimensions
-            .get('window').height/6}]}}>
+            .get('window').height/5}]}}>
           <CodeField
             // ref={ref}
             // {...props}

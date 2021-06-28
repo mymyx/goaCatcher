@@ -3,7 +3,8 @@ import{BASE_URI} from "./pathMap";
 import Toast from "./Toast";
 const instance=axios.create(
     {
-        baseURL:BASE_URI
+        baseURL:BASE_URI,
+        timeout:60000,
     }
 )
 // 添加请求拦截器
