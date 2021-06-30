@@ -110,9 +110,8 @@ class accountLogin extends Component{
       console.log(res);
 
       if (res.status==true){
-        var token=res.token;
-        this.setState({token});
-        console.log(this.state.token);
+        SyncStorage.setValue('token',res.token);
+        console.log(SyncStorage.getValue('token'));
       }
       else{
         Toast.message("Something went wrong, please check your network",2000,"center");
