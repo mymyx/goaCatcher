@@ -7,6 +7,7 @@ import validator from "../../../utils/validator";
 import request from "../../../utils/request";
 import SyncStorage from "../../../utils/SyncStorage";
 import Toast from '../../../utils/Toast';
+import { ACCOUNT_LOGIN } from '../../../utils/pathMap';
 // 类组件
 class accountLogin extends Component{
 
@@ -41,27 +42,8 @@ class accountLogin extends Component{
       isSelected:true,
       // 字体
       fonts:"ABeeZee-Regular",
-      // // 输入框样式
-      // edit:{
-      //   // 输入栏边框
-      //   // borderRadius:10,
-      //   borderColor:'#BFBFBF',
-      //   borderWidth:1,
-      //   // 输入栏间距
-      //   marginTop:pxToDp(10),
-      //   marginLeft:pxToDp(45),
-      //   marginRight:pxToDp(45),
-      //   // 透明度
-      //   opacity:1,
-      //   color:"#979797",
-      //   fontSize:16,
-      //   height: pxToDp(40),
-      //   // width: 40,
-      //   // textAlign:"center",
-      //   backgroundColor:'#fff',
-      //   // transform:[{translateY:pxToDp(160)}]
-      // },
 
+      token:"",
       // Sign up样式
       signUpStyle:{
         opacity:1,
@@ -109,7 +91,7 @@ class accountLogin extends Component{
     this.setState({isSelected});
   }
   // 按钮事件
-  rememberMe=()=>{
+  rememberMe=async()=>{
     // 跳转到主界面
     if(this.state.emailOrUsername.length!=0&&this.state.password.length>=8){
       if (this.state.isSelected==true){
@@ -118,8 +100,25 @@ class accountLogin extends Component{
       else{
         SyncStorage.setValue("password","");
       }
+
+      // 登录接口
+      var queryString=require('querystring');
+      const res=await request.post(ACCOUNT_LOGIN,queryString.stringify({
+        'password':this.state.password,
+        'email':this.state.emailOrUsername,
+      }));
+      console.log(res);
+
+      if (res.status==true){
+        var token=res.token;
+        this.setState({token});
+        console.log(this.state.token);
+      }
+      else{
+        Toast.message("Something went wrong, please check your network",2000,"center");
+      }
       // 跳转
-      this.props.navigation.navigate("Reset");
+      this.props.navigation.navigate("Main");
       SyncStorage.setValue("username/email",this.state.emailOrUsername);
     }
     else{

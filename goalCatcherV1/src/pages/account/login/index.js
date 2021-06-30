@@ -158,26 +158,8 @@ class Index extends Component{
   signup=async()=>{
     // 调用注册接口 type1
     if(this.state.emailValidate==true&&this.state.email.length!=0&&this.state.username.length!=0&&this.state.password.length>=8&&this.state.password==this.state.verificatedPassword){
-      var queryString=require('querystring');
-      const res=await request.post(ACCOUNT_REGINFO,queryString.stringify({
-        'nickname':this.state.username,
-        'type':1,
-        'password':this.state.password,
-        'email':this.state.email
-      }));
-
-      console.log(res);
-      if (res.status==true){
-        var token=res.token;
-        this.setState({token});
-        console.log(this.state.token);
-        var showLogin=false;
-        this.setState({showLogin});
-      }
-      else{
-        Toast.message("Something went wrong, please check your network",2000,"center");
-      }
-    }
+      var showLogin=false;
+      this.setState({showLogin});}
     else{
       Toast.message("Please input valid user information",2000,"center");
     }
@@ -186,11 +168,28 @@ class Index extends Component{
 
 // 按按钮开启验证码定时器获取验证码
   countDown=async()=>{
+    var queryString=require('querystring');
+    const res=await request.post(ACCOUNT_REGINFO,queryString.stringify({
+      'nickname':this.state.username,
+      'type':1,
+      'password':this.state.password,
+      'email':this.state.email
+    }));
+    console.log(res);
+    if (res.status==true){
+      var token=res.token;
+      this.setState({token});
+      console.log(this.state.token);
+    }
+    else{
+      Toast.message("Something went wrong, please check your network",2000,"center");
+      return;
+    }
+    // }
     if(this.state.isCountDown){
       return;
     }
     console.log("开启倒计时");
-    this.setState({vTrueCode:"666666"});
     // 调用获取验证码接口
     // const res=await request.post(ACCOUNT_LOGIN,{phone:this.state.email});
     // console.log("code",res.data);
@@ -235,18 +234,18 @@ class Index extends Component{
     else{
       var queryString=require('querystring');
       const res=await request.post(ACCOUNT_REGINFO,queryString.stringify({
+        'type':2,
         'verifyCode':vcodeText,
         'token':token,
       }));
       console.log(res);
       if(res.status==true){
-        this.props.navigation.navigate("Reset");
+        this.props.navigation.navigate("Login");
       }
       else{
         Toast.message("Wrong verification code",2000,"center");
       }
     }
-
   }
 
 
