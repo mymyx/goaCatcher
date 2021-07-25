@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import {
   View,
   Text,
@@ -10,20 +10,21 @@ import {
   Image,
   ImageBackground,
 } from 'react-native';
-import {pxToDp} from '../../../utils/stylesKits';
+import { pxToDp } from '../../../utils/stylesKits';
 import Icon from 'react-native-vector-icons/FontAwesome';
-import {Input, Button} from 'react-native-elements';
+import { Input, Button } from 'react-native-elements';
 import validator from '../../../utils/validator';
 import request from '../../../utils/request';
 import Toast from '../../../utils/Toast';
-import {ACCOUNT_LOGIN} from '../../../utils/pathMap';
-import {ACCOUNT_REGINFO} from '../../../utils/pathMap';
+import { ACCOUNT_LOGIN } from '../../../utils/pathMap';
+import { ACCOUNT_REGINFO } from '../../../utils/pathMap';
 import {
   CodeField,
   Cursor,
   useBlurOnFulfill,
   useClearByFocusCell,
 } from 'react-native-confirmation-code-field';
+import { register } from '../../../services/login';
 // 类组件
 class Index extends Component {
   // 构造函数，用于组件初始化
@@ -85,42 +86,42 @@ class Index extends Component {
   }
   // 监听用户名文本变化
   usernameText = username => {
-    this.setState({username});
+    this.setState({ username });
     console.log('username:', username);
   };
   // 用户名输入获得焦点之后清空输入框
   usernameFocus = () => {
     const username = '';
-    this.setState({username});
+    this.setState({ username });
   };
 
   emailText = email => {
-    this.setState({email});
+    this.setState({ email });
     console.log('email:', email);
   };
 
   emailFocus = () => {
     const email = '';
-    this.setState({email});
+    this.setState({ email });
   };
 
   passwordText = password => {
-    this.setState({password});
+    this.setState({ password });
     console.log('password:', password);
   };
 
   passwordFocus = () => {
     const password = '';
-    this.setState({password});
+    this.setState({ password });
   };
 
   validateFocus = () => {
     const verificatedPassword = '';
-    this.setState({verificatedPassword});
+    this.setState({ verificatedPassword });
   };
 
   passwordVerificationText = verificatedPassword => {
-    this.setState({verificatedPassword});
+    this.setState({ verificatedPassword });
     console.log('passwordVerification:', verificatedPassword);
   };
   // 键盘点击完成时触发
@@ -129,7 +130,7 @@ class Index extends Component {
     if (this.state.username.length == 0) {
       usernameValidate = false;
     }
-    this.setState({usernameValidate});
+    this.setState({ usernameValidate });
   };
   // 点击完成时触发
   emailSubmit = () => {
@@ -138,7 +139,7 @@ class Index extends Component {
     //   this.setState({emailValidate});
     //   return;
     // }
-    this.setState({emailValidate});
+    this.setState({ emailValidate });
   };
 
   // 点击完成时触发
@@ -147,7 +148,7 @@ class Index extends Component {
     if (this.state.password.length < 8) {
       passwordValidate = false;
     }
-    this.setState({passwordValidate});
+    this.setState({ passwordValidate });
   };
 
   // 点击完成时触发
@@ -156,7 +157,7 @@ class Index extends Component {
     if (this.state.verificatedPassword == this.state.password) {
       confirmPasswordValidate = true;
     }
-    this.setState({confirmPasswordValidate});
+    this.setState({ confirmPasswordValidate });
   };
 
   // 已有账号切换到登录界面
@@ -175,7 +176,7 @@ class Index extends Component {
       this.state.password == this.state.verificatedPassword
     ) {
       var showLogin = false;
-      this.setState({showLogin});
+      this.setState({ showLogin });
     } else {
       Toast.message('Please input valid user information', 2000, 'center');
     }
@@ -183,20 +184,26 @@ class Index extends Component {
 
   // 按按钮开启验证码定时器获取验证码
   countDown = async () => {
-    var queryString = require('querystring');
-    const res = await request.post(
-      ACCOUNT_REGINFO,
-      queryString.stringify({
-        nickname: this.state.username,
-        type: 1,
-        password: this.state.password,
-        email: this.state.email,
-      }),
-    );
+    // var queryString = require('querystring');
+    // const res = await request.post(
+    //   ACCOUNT_REGINFO,
+    //   queryString.stringify({
+    //     nickname: this.state.username,
+    //     type: 1,
+    //     password: this.state.password,
+    //     email: this.state.email,
+    //   }),
+    // );
+    const res = await register({
+      nickname: this.state.username,
+      type: 1,
+      password: this.state.password,
+      email: this.state.email,
+    });
     console.log(res);
     if (res.status == true) {
       var token = res.token;
-      this.setState({token});
+      this.setState({ token });
       console.log(this.state.token);
     } else {
       Toast.message(
@@ -223,42 +230,47 @@ class Index extends Component {
     // }
 
     let seconds = 60;
-    this.setState({isCountDown: true});
-    this.setState({disabled: true});
-    this.setState({btnText: 'Resend verification code(' + seconds + 's)'});
+    this.setState({ isCountDown: true });
+    this.setState({ disabled: true });
+    this.setState({ btnText: 'Resend verification code(' + seconds + 's)' });
     console.log(seconds);
     let timeId = setInterval(() => {
       seconds--;
-      this.setState({btnText: 'Resend verification code(' + seconds + 's)'});
+      this.setState({ btnText: 'Resend verification code(' + seconds + 's)' });
       if (seconds === 0) {
         clearInterval(timeId);
-        this.setState({btnText: 'Send verification code'});
-        this.setState({isCountDown: false});
-        this.setState({disabled: false});
+        this.setState({ btnText: 'Send verification code' });
+        this.setState({ isCountDown: false });
+        this.setState({ disabled: false });
       }
     }, 1000);
   };
 
   // 验证码输入框的值改变事件
   onVodeChangeText = vcodeText => {
-    this.setState({vcodeText});
+    this.setState({ vcodeText });
   };
   // 验证码输入完毕事件
   onVcodeSubmitEditing = async () => {
     // 对验证码做校验
-    const {vcodeText, token} = this.state;
+    const { vcodeText, token } = this.state;
     if (vcodeText.length != 6) {
       Toast.message('Verification code has 6 digits', 2000, 'center');
     } else {
-      var queryString = require('querystring');
-      const res = await request.post(
-        ACCOUNT_REGINFO,
-        queryString.stringify({
-          type: 2,
-          verifyCode: vcodeText,
-          token: token,
-        }),
-      );
+      // var queryString = require('querystring');
+      // const res = await request.post(
+      //   ACCOUNT_REGINFO,
+      //   queryString.stringify({
+      //     type: 2,
+      //     verifyCode: vcodeText,
+      //     token: token,
+      //   }),
+      // );
+      const res = await register({
+        type: 2,
+        verifyCode: vcodeText,
+        token: token,
+      });
       console.log(res);
       if (res.status == true) {
         this.props.navigation.navigate('Login');
@@ -274,12 +286,14 @@ class Index extends Component {
       <View>
         <ImageBackground
           source={require('../../../images/loginbackground.png')}
-          style={{width: '100%', height: '100%'}}>
-          <View style={{flex: 1 / 6, transform: [{translateY: pxToDp(135)}]}}>
+          style={{ width: '100%', height: '100%' }}>
+          <View
+            style={{ flex: 1 / 6, transform: [{ translateY: pxToDp(135) }] }}>
             <Text style={this.state.signUpStyle}>Sign up</Text>
           </View>
           {/* 输入框 */}
-          <View style={{flex: 1 / 13, transform: [{translateY: pxToDp(100)}]}}>
+          <View
+            style={{ flex: 1 / 13, transform: [{ translateY: pxToDp(100) }] }}>
             <Input
               placeholder="Username"
               // 最大长度11
@@ -301,7 +315,8 @@ class Index extends Component {
               }}
             />
           </View>
-          <View style={{flex: 1 / 13, transform: [{translateY: pxToDp(100)}]}}>
+          <View
+            style={{ flex: 1 / 13, transform: [{ translateY: pxToDp(100) }] }}>
             <Input
               placeholder="Email"
               maxLength={64}
@@ -320,7 +335,8 @@ class Index extends Component {
               }}
             />
           </View>
-          <View style={{flex: 1 / 13, transform: [{translateY: pxToDp(100)}]}}>
+          <View
+            style={{ flex: 1 / 13, transform: [{ translateY: pxToDp(100) }] }}>
             <Input
               secureTextEntry={true}
               maxLength={256}
@@ -342,7 +358,8 @@ class Index extends Component {
               }}
             />
           </View>
-          <View style={{flex: 1 / 13, transform: [{translateY: pxToDp(100)}]}}>
+          <View
+            style={{ flex: 1 / 13, transform: [{ translateY: pxToDp(100) }] }}>
             <Input
               secureTextEntry={true}
               maxLength={256}
@@ -371,7 +388,7 @@ class Index extends Component {
               alignItems: 'center',
               position: 'absolute',
               justifyContent: 'center',
-              transform: [{translateY: pxToDp(480)}],
+              transform: [{ translateY: pxToDp(480) }],
             }}>
             <Button
               title="Register"
@@ -390,10 +407,10 @@ class Index extends Component {
               alignItems: 'center',
               flexDirection: 'row',
               position: 'absolute',
-              transform: [{translateY: pxToDp(550)}],
+              transform: [{ translateY: pxToDp(550) }],
             }}>
             <View
-              style={{marginLeft: 35, alignItems: 'flex-start', flex: 1 / 2}}>
+              style={{ marginLeft: 35, alignItems: 'flex-start', flex: 1 / 2 }}>
               <Text
                 style={{
                   color: this.state.grey,
@@ -403,7 +420,7 @@ class Index extends Component {
             </View>
 
             <View
-              style={{marginRight: 35, alignItems: 'flex-end', flex: 1 / 2}}>
+              style={{ marginRight: 35, alignItems: 'flex-end', flex: 1 / 2 }}>
               <Text
                 style={{
                   color: this.state.textColor,
@@ -446,12 +463,12 @@ class Index extends Component {
       <View>
         <ImageBackground
           source={require('../../../images/loginbackground.png')}
-          style={{width: '100%', height: '100%'}}>
+          style={{ width: '100%', height: '100%' }}>
           <View
             style={{
               alignItems: 'center',
               flex: 1 / 6,
-              transform: [{translateY: pxToDp(135)}],
+              transform: [{ translateY: pxToDp(135) }],
             }}>
             <Text
               style={{
@@ -469,7 +486,7 @@ class Index extends Component {
             style={{
               alignItems: 'center',
               flex: 1 / 6,
-              transform: [{translateY: pxToDp(150)}],
+              transform: [{ translateY: pxToDp(150) }],
             }}>
             <Text
               style={{
@@ -487,7 +504,7 @@ class Index extends Component {
           {/* 验证码输入框 */}
           <View
             style={{
-              transform: [{translateY: Dimensions.get('window').height / 5}],
+              transform: [{ translateY: Dimensions.get('window').height / 5 }],
             }}>
             <CodeField
               // ref={ref}
@@ -500,7 +517,7 @@ class Index extends Component {
               rootStyle={styles.codeFieldRoot}
               keyboardType="default"
               textContentType="oneTimeCode"
-              renderCell={({index, symbol, isFocused}) => (
+              renderCell={({ index, symbol, isFocused }) => (
                 <Text
                   key={index}
                   style={[styles.cell, isFocused && styles.focusCell]}>
@@ -517,7 +534,9 @@ class Index extends Component {
               alignItems: 'center',
               position: 'absolute',
               justifyContent: 'center',
-              transform: [{translateY: Dimensions.get('window').height / 1.7}],
+              transform: [
+                { translateY: Dimensions.get('window').height / 1.7 },
+              ],
             }}>
             <Button
               title={this.state.btnText}
@@ -548,8 +567,8 @@ class Index extends Component {
 }
 
 const styles = StyleSheet.create({
-  root: {flex: 1, padding: 20},
-  title: {textAlign: 'center', fontSize: 30},
+  root: { flex: 1, padding: 20 },
+  title: { textAlign: 'center', fontSize: 30 },
   // codeFieldRoot: {marginTop: 20},
   //   未选中单元格样式
   cell: {

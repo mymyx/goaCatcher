@@ -22,8 +22,8 @@ instance.interceptors.request.use(
     Toast.showLoading('Loading');
     // 在发送请求之前做些什么
     const requestData = {
-      ...config.data,
       token: tokenUtil.token,
+      ...config.data,
     };
     return {
       ...config,
