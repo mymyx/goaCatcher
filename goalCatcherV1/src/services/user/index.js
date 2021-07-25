@@ -95,8 +95,8 @@ user_id: 10031
   following = 0,
   goals = 0,
  */
-export function fetchUserFollowing() {
-  return request.post('/user/following').then(({ data }) =>
+export function fetchUserFollowing(userId) {
+  return request.post('/user/following', { userId }).then(({ data }) =>
     data.map(item => ({
       id: item['user_id'],
       avatar: getAvatarUrl(item['avatar']),
@@ -108,8 +108,8 @@ export function fetchUserFollowing() {
   );
 }
 
-export function fetchUserFollowed() {
-  return request.post('/user/followed').then(({ data }) =>
+export function fetchUserFollowed(userId) {
+  return request.post('/user/followed', { userId }).then(({ data }) =>
     data.map(item => ({
       id: item['user_id'],
       avatar: getAvatarUrl(item['avatar']),
