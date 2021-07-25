@@ -36,14 +36,13 @@ const GoalUpdate = () => {
         content: feelings,
       }).then(({ reward }) => {
         Toast.success('Success');
-        navigation.dispatch(StackActions.replace('Congrats', { type: reward }));
-        // if (reward) {
-        //   navigation.dispatch(
-        //     StackActions.replace('Congrats', { type: reward }),
-        //   );
-        // } else {
-        //   navigation.goBack();
-        // }
+        if (!validator.isStringEmpty(reward)) {
+          navigation.dispatch(
+            StackActions.replace('Congrats', { type: reward }),
+          );
+        } else {
+          navigation.goBack();
+        }
       });
     }
   };
