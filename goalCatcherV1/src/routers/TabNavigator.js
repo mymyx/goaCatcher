@@ -10,12 +10,20 @@ import myGoalsIcon from '../images/myGoals.png';
 import myGoalsActiveIcon from '../images/myGoalsActive.png';
 import homeIcon from '../images/homeIcon.png';
 import homeIconActive from '../images/homeIconActive.png';
+import homeSearchIcon from '../images/home-search.png';
+import homeSearchActiveIcon from '../images/home-search-active.png';
 
 const Tab = createBottomTabNavigator();
 
 const TabIcon = ({ source }) => {
   const size = pxToDp(26);
-  return <Image source={source} style={{ width: size, height: size }} />;
+  return (
+    <Image
+      resizeMode="contain"
+      source={source}
+      style={{ width: size, height: size }}
+    />
+  );
 };
 const TabNavigator = () => (
   <Tab.Navigator
@@ -55,7 +63,7 @@ const TabNavigator = () => (
       options={{
         tabBarLabel: 'Search',
         tabBarIcon: ({ focused }) => {
-          const source = focused ? myGoalsActiveIcon : myGoalsIcon;
+          const source = focused ? homeSearchActiveIcon : homeSearchIcon;
           return <TabIcon source={source} />;
         },
       }}

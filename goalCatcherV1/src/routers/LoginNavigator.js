@@ -1,8 +1,8 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
 
-import SignUp from '../pages/Account/SignUp';
-import Login from '../pages/Account/Login';
+import SignUp from '../pages/account/SignUp';
+import Login from '../pages/account/login';
 // import Reset from '../pages/Account/login/reset';
 // import Main from '../pages/Account/login/main';
 // import ResetPassword from "./pages/account/login/restPassword";
