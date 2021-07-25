@@ -1,24 +1,25 @@
-import React from "react";
-import { ActivityIndicator } from "react-native";
-import {Toast,Theme  } from "teaset";
+import React from 'react';
+import { ActivityIndicator } from 'react-native';
+import { Toast, Theme } from 'teaset';
 
 let customKey = null;
 
 // 消息提示框
-Toast.showLoading=(text)=> {
+Toast.showLoading = text => {
   if (customKey) return;
   customKey = Toast.show({
     text,
-    icon: <ActivityIndicator size='large' color={Theme.toastIconTintColor} />,
+    modal: true,
+    icon: <ActivityIndicator size="large" color={Theme.toastIconTintColor} />,
     position: 'center',
-    duration: 100000,
+    // duration: 100000,
   });
-}
+};
 
-Toast.hideLoading=()=>{
+Toast.hideLoading = () => {
   if (!customKey) return;
   Toast.hide(customKey);
   customKey = null;
-}
+};
 
 export default Toast;
