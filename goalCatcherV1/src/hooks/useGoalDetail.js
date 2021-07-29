@@ -32,5 +32,16 @@ export function useGoalDetail(goalId) {
     };
   }, [goalId]);
 
-  return [loading, result];
+  const reload = () => {
+    setLoading(true);
+    fetchGoalRecords(goalId).then(records => {
+      setLoading(false);
+      setResult(oResult => ({
+        ...oResult,
+        records,
+      }));
+    });
+  };
+
+  return [loading, result, reload];
 }

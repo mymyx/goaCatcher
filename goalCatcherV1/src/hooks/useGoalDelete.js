@@ -1,14 +1,14 @@
 import React from 'react';
 import { Toast } from 'teaset';
 import ModalAlert from '../components/ModalAlert';
-import { deleteGoalById } from '../services/goal';
+import { updateDelete } from '../services/goal';
 
-export function useGoalDelete(id, successCallback) {
+export function useGoalDelete(goalId, postId, successCallback) {
   const showDeleteModal = () => {
     ModalAlert.show({
       content: 'Do you really want to delete the goal?',
       onPressOk: async clonse => {
-        deleteGoalById(id).then(() => {
+        updateDelete(goalId, postId).then(() => {
           Toast.message('Sucesss');
           successCallback && successCallback();
           clonse();

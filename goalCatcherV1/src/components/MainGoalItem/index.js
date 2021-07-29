@@ -30,6 +30,7 @@ const useNumber = (cuNumber = 0) => {
 
 const MainGoalItem = ({
   id,
+  goalId,
   userData,
   title,
   description,
@@ -37,13 +38,14 @@ const MainGoalItem = ({
   likeNumber,
   commentNumber,
   isLike,
+  deleteSuccess,
 }) => {
   const { username, lastTime, userId, status, statusStr, avatar } =
     userData || {};
   const isCurrent = useIsCurrent(userId);
   const [showComment, changeShowComment] = useShowComment();
   const { goalLike, changeGoalLike } = useGoalLike(id, isLike);
-  const { showDeleteModal } = useGoalDelete(id);
+  const { showDeleteModal } = useGoalDelete(goalId, id, deleteSuccess);
   const { onPush } = useNavigationProfile(userId);
   const { num: likeNum, setNum: setLikeNum } = useNumber(likeNumber);
   const { num: commentNum, setNum: setCommentNum } = useNumber(commentNumber);

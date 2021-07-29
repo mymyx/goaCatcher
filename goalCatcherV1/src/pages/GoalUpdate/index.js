@@ -34,7 +34,7 @@ const GoalUpdate = () => {
       updateGoal(goalId, {
         status: statusValue,
         content: feelings,
-      }).then(({ reward }) => {
+      }).then(({ reward = '' }) => {
         Toast.success('Success');
         if (!validator.isStringEmpty(reward)) {
           navigation.dispatch(

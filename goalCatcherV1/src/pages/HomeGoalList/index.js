@@ -11,10 +11,11 @@ const HomeGoalList = () => {
       <HomeStatusBar />
       <ProHoalList
         request={async params => fetchGoalList()}
-        renderItem={({ item }) => {
+        renderItem={({ item }, reload) => {
           return (
             <MainGoalItem
               id={item.id}
+              goalId={item.goalId}
               userData={{
                 userId: item.userId,
                 username: item.username,
@@ -29,6 +30,7 @@ const HomeGoalList = () => {
               likeNumber={item.likes}
               commentNumber={item.comments}
               isLike={item.isLike}
+              deleteSuccess={reload}
             />
           );
         }}

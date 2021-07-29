@@ -9,7 +9,7 @@ import { useGoalDetail } from '../../hooks/useGoalDetail';
 const GoalDetail = () => {
   const { params } = useRoute();
   const goalId = params?.id;
-  const [loading, result] = useGoalDetail(goalId);
+  const [loading, result, reload] = useGoalDetail(goalId);
   const data = Array.isArray(result.records) ? result.records : [];
   return (
     <View style={{ flex: 1 }}>
@@ -20,6 +20,7 @@ const GoalDetail = () => {
           return (
             <MainGoalItem
               id={item.id}
+              goalId={item.goalId}
               title={item.title}
               description={item.description}
               likeNumber={item.likeNumber}
@@ -27,6 +28,7 @@ const GoalDetail = () => {
               feelings={item.feelings}
               isLike={item.isLike}
               userData={item.userData}
+              deleteSuccess={reload}
             />
           );
         }}

@@ -41,6 +41,7 @@ export function fetchGoalList(data) {
   return request.post('/goal/list', data).then(({ data }) => ({
     data: data.map(item => ({
       id: item['post_id'],
+      goalId: item['project_id'],
       title: item['name'],
       description: item['intro'],
       avatar: getAvatarUrl(item['avatar']),
@@ -153,6 +154,7 @@ export function fetchGoalRecords(goalId) {
   return request.post('/goal/all', { goalId }).then(({ data }) =>
     data.map(item => ({
       id: item['post_id'],
+      goalId: item['project_id'],
       title: item['name'],
       description: item['intro'],
       commentNumber: item['comment_number'],
@@ -226,12 +228,18 @@ export function deleteGoalById(id) {
   return request.post(`/goal/delete`, { goalId: id });
 }
 
+export function updateDelete(goalId, postId) {
+  return request.post('/update/delete', { goalId, postId });
+}
+
 export function fetchAllCurrentGoal() {
   return request.post(`/user/goal`, { userId: 0 }).then(({ data }) =>
-    data.map(item => ({
-      value: item.project_id,
-      label: item.name,
-    })),
+    data
+      .filter(item => item['isAchieved'] === 0)
+      .map(item => ({
+        value: item.project_id,
+        label: item.name,
+      })),
   );
 }
 

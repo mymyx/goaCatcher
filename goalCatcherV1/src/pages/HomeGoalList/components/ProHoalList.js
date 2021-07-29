@@ -30,10 +30,19 @@ const ProHoalList = ({ request, renderItem }) => {
 
   const onEndReached = () => {};
 
+  const reload = () => {
+    request({
+      current: currentPage.current,
+      pageSize: DEFAULT_PAGE_SIZE,
+    }).then(({ data }) => {
+      setData(data);
+    });
+  };
+
   return (
     <FlatList
       data={data}
-      renderItem={renderItem}
+      renderItem={info => renderItem(info, reload)}
       onEndReachedThreshold={0.3}
       keyExtractor={(item, index) => `${item.id}${index}`}
       onEndReached={onEndReached}
