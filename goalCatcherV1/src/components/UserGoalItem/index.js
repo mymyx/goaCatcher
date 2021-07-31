@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import { StyleSheet, View, TouchableOpacity } from 'react-native';
 import { Label } from 'teaset';
 import Swipeable from 'react-native-gesture-handler/Swipeable';
@@ -39,14 +39,19 @@ const UserGoalItem = ({
   enableLike = false,
   deleteCallback,
 }) => {
+  const supeableRef = useRef();
   const navigation = useNavigation();
   const { goalLike, changeGoalLike } = useGoalLike(id, isLike);
-  const { onPressDelete } = useDeleteGoal(id, deleteCallback);
+  const { onPressDelete } = useDeleteGoal(id, () => {
+    supeableRef.current?.close();
+    deleteCallback && deleteCallback();
+  });
   const onPress = () => {
     navigation.push('GoalDetail', { id });
   };
   return (
     <Swipeable
+      ref={supeableRef}
       friction={1.5}
       overshootRight={false}
       renderRightActions={
